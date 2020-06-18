@@ -8,10 +8,7 @@ body a {
     color: black;
 }
 
-.text-black {
-    color: black;
-}
-
-#user-profile {
-    background-color: lightgreen;
+.container {
+    display: flex;
+    justify-content: space-between;
 }
