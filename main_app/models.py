@@ -24,7 +24,8 @@ class Post(models.Model):
     content = models.TextField(max_length=1000)
     author = models.ForeignKey(UserProfile, on_delete=models.CASCADE)
     city = models.ForeignKey(City, on_delete=models.CASCADE)
-    created_on = models.DateTimeField(auto_now_add=True)
+    created_on = models.DateTimeField(auto_now_add=True),
+    user = models.ForeignKey(User, on_delete = models.CASCADE)
 
     def __str__(self):
         return self.title
