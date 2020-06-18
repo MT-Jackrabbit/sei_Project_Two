@@ -24,16 +24,16 @@
                              <div class="modal-header">
                                  <h1>Log In</h1>
                              </div>
-                             <div class="modal-body">
-                                 <form action="{% url 'login' %}" method="POST">
-                                    {% csrf_token %}
-                                    {{ form.as_p }}
-                                 </form>
-                             </div>
-                             <div class="modal-footer">
-                                 <input class='btn' type="text" >
-                                 <input class='btn' type="text" value="Sign In" data-toggle="modal" data-target="#signUpModal">
-                             </div>
+                             <form action="#" method="POST">
+                                <div class="modal-body">
+                                        {% csrf_token %}
+                                        {{ form.as_p }}
+                                </div>
+                                <div class="modal-footer">
+                                    <input class='btn' type="text" >
+                                    <input class='btn' type="text" value="Sign In" data-toggle="modal" data-target="#signUpModal">
+                                </div>
+                            </form>
                          </div>
                      </div>
                  </div>
@@ -50,15 +50,15 @@
                              <div class="modal-header">
                                  <h1>Sign Up</h1>
                              </div>
-                             <div class="modal-body">
-                                <form action="{% url 'signup' %}" method="POST">
+                             <form action="#" method="POST">
+                                <div class="modal-body">
                                     {% csrf_token %}
                                     {{ form.as_p }}
-                                 </form>
-                             </div>
-                             <div class="modal-footer">
-                                 <input class='btn' type="text" value='Sign Up'>
-                             </div>
+                                </div>
+                                <div class="modal-footer">
+                                    <input class='btn' type="text" value='Sign Up'>
+                                </div>
+                            </form>
                          </div>
                      </div>
                  </div>
@@ -71,7 +71,7 @@
             <a class="h1" href="#">Wayfarer</a>
         </div>
         <div class="col-6 d-flex justify-content-end" id="navbarNav">
-            <a class="nav-link" href="#" data-toggle="modal" data-target="#signInModal">Sign in</a>
+            <a class="nav-link" href="#" data-toggle="modal" data-target="#logInModal">Sign in</a>
             <a class="nav-link" href="#" data-toggle="modal" data-target="#signUpModal">Sign up</a>
         </div>
     </nav>
