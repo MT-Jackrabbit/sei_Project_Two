@@ -14,13 +14,34 @@
     <title>Wayfarer</title>
 </head>
 <body>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                 <div class="modal fade" id="signInModal">
+                     <div class="modal-dialog">
+                         <div class="modal-content">
+                             <div class="modal-header">
+                                 <h1>Sign In</h1>
+                             </div>
+                             <div class="modal-body">
+                                 This will be a form
+                             </div>
+                             <div class="modal-footer">
+                                 <input class='btn' type="text">
+                             </div>
+                         </div>
+                     </div>
+                 </div>
+            </div>
+        </div>
+    </div>
     <nav class="navbar navbar-light bg-light">
         <div class="col-6">
             <a class="h1" href="#">Wayfarer</a>
         </div>
         <div class="col-6 d-flex justify-content-end" id="navbarNav">
-                    <a class="nav-link" href="#">Sign in</a>
-                    <a class="nav-link" href="#">Sign up</a>
+                    <a class="nav-link" href="#" data-toggle="modal" data-target="#signInModal">Sign in</a>
+                    <a class="nav-link" href="#" data-toggle="modal" data-target="#signUpModal">Sign up</a>
         </div>
     </nav>
     {% block content %}
