@@ -11,31 +11,38 @@
 <!-- JS, Popper.js, and jQuery -->
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+    <script src="{% static 'js/jquery.bootstrap.modal.forms.js' %}"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js" integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI" crossorigin="anonymous"></script>
     <title>Wayfarer</title>
 </head>
 <body>
-    <div class="container" id="signIn">
+    <!-- Login Modal -->
+    <div class="container" id="logIn">
         <div class="row">
             <div class="col-md-12">
-                 <div class="modal fade" id="signInModal">
+                 <div class="modal fade" id="logInModal">
                      <div class="modal-dialog modal-dialog-centered">
                          <div class="modal-content">
                              <div class="modal-header">
-                                 <h1>Sign In</h1>
+                                 <h1>Log In</h1>
                              </div>
-                             <div class="modal-body">
-                                 This will be a form
-                             </div>
-                             <div class="modal-footer">
-                                 <input class='btn' type="text" value="Sign In">
-                             </div>
+                             <form action="{% url 'login' %}" method="POST">
+                                <div class="modal-body">
+                                        {% csrf_token %}
+                                        {{ logInForm.as_p }}
+                                </div>
+                                <div class="modal-footer">
+                                    <input class='btn' type="text" >
+                                    <input class='btn' type="text" value="Sign In" data-toggle="modal" data-target="#signUpModal">
+                                </div>
+                            </form>
                          </div>
                      </div>
                  </div>
             </div>
         </div>
     </div>
+    <!-- Sign Up Modal -->
     <div class="container" id="signUp">
         <div class="row">
             <div class="col-md-12">
@@ -45,25 +52,29 @@
                              <div class="modal-header">
                                  <h1>Sign Up</h1>
                              </div>
-                             <div class="modal-body">
-                                 This will be a form
-                             </div>
-                             <div class="modal-footer">
-                                 <input class='btn' type="text" value='Sign Up'>
-                             </div>
+                             <form action="#" method="POST">
+                                <div class="modal-body">
+                                    {% csrf_token %}
+                                    {{ signUpForm.as_p }}
+                                </div>
+                                <div class="modal-footer">
+                                    <input class='btn' type="text" value='Sign Up'>
+                                </div>
+                            </form>
                          </div>
                      </div>
                  </div>
             </div>
         </div>
     </div>
+    <!-- Nav Bar  -->
     <nav class="navbar navbar-light bg-light">
         <div class="col-6">
             <a class="h1" href="#">Wayfarer</a>
         </div>
         <div class="col-6 d-flex justify-content-end" id="navbarNav">
-                    <a class="nav-link" href="#" data-toggle="modal" data-target="#signInModal">Sign in</a>
-                    <a class="nav-link" href="#" data-toggle="modal" data-target="#signUpModal">Sign up</a>
+            <a class="nav-link" href="#" data-toggle="modal" data-target="#logInModal">Sign in</a>
+            <a class="nav-link" href="#" data-toggle="modal" data-target="#signUpModal">Sign up</a>
         </div>
     </nav>
     {% block content %}
