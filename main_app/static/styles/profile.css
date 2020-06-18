@@ -3,7 +3,11 @@
 }
 
 .section__profile {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
     width: 25%;
+    min-width: 200px;
     height: 100vh;
     background-color: lightgray;
 }
@@ -11,4 +15,18 @@
 .section__post__titles {
     width:75%;
     height: 100vh;
+}
+
+.profile-img {
+    border-radius: 50%;
+    width: 100px;
+    height: 100px;
+}
+
+.update-form {
+}
+
+#user-name {
+    font-size: x-large;
+    font-weight: bold;
 }
