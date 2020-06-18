@@ -1,23 +1,32 @@
 {% extends 'base.html' %}
 
 {% block content %}
+    <article class="article__user">
+        <section class="section__profile">
 
-    <h1>Welcome To Your Profile</h1>
-    <div class="container">
+        </section>
+        <section class="section__post-titles">
+
+        </section>
+    </article>
+    <!-- <div class="container m-3">
         <div class="row">
-            <div id="user-profile" class="col-4">
-                These are just some words.
-                {{user.name}}
-                {{user.city}}
-
-                <form action="" method="post">
-                    {{form.as_p}}
-                </form>
+            <div id="user-profile" class="col d-flex flex-column align-items-center">
+                <img class="profile-img mt-2" src="{{user.imageURL}}" alt="profile pic">
+                <p id="user-name">{{ user.name }}</p>
+                <p>{{ user.city }}</p>
+                <p>{{ user.joined_on }}</p>
+                <button type="button" class="btn btn-outline-dark btn-sm mt-3">Change</button>
+                <div class="update-profile" hidden>
+                    <form action="" method="post">
+                        {{form.as_p}}
+                    </form>
+                </div>
             </div>
-            <div class="col-6 green">
+            <div class="col">
                 Some more words. 
             </div>
         </div>
-    </div>
+    </div> -->
 
 {% endblock %}

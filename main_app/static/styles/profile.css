@@ -1,0 +1,14 @@
+.article__user {
+    display: flex;
+}
+
+.section__profile {
+    width: 25%;
+    height: 100vh;
+    background-color: lightgray;
+}
+
+.section__post__titles {
+    width:75%;
+    height: 100vh;
+}

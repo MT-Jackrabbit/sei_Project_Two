@@ -13,5 +13,5 @@ def home(req):
 
 def user_profile(req, user_id):
     user = UserProfile.objects.get(id=user_id)
-    form = Profile_Form()
+    form = Profile_Form(instance=user)
     return render(req, 'user/profile.html', {'user': user, 'form': form})
