@@ -14,17 +14,21 @@
     <title>Wayfarer</title>
 </head>
 <body>
-    <div class="container" id="signIn">
+    <!-- Login Modal -->
+    <div class="container" id="logIn">
         <div class="row">
             <div class="col-md-12">
-                 <div class="modal fade" id="signInModal">
+                 <div class="modal fade" id="logInModal">
                      <div class="modal-dialog modal-dialog-centered">
                          <div class="modal-content">
                              <div class="modal-header">
-                                 <h1>Sign In</h1>
+                                 <h1>Log In</h1>
                              </div>
                              <div class="modal-body">
-                                 This will be a form
+                               <!--   <form action="{% url 'login' %}" method="POST">
+                                    {% csrf_token %}
+                                    {{ form.as_p }}
+                                 </form> -->
                              </div>
                              <div class="modal-footer">
                                  <input class='btn' type="text" value="Sign In">
@@ -35,6 +39,7 @@
             </div>
         </div>
     </div>
+    <!-- Sign Up Modal -->
     <div class="container" id="signUp">
         <div class="row">
             <div class="col-md-12">
@@ -45,7 +50,10 @@
                                  <h1>Sign Up</h1>
                              </div>
                              <div class="modal-body">
-                                 This will be a form
+                                <!-- <form action="{% url 'signup' %}" method="POST">
+                                    {% csrf_token %}
+                                    {{ form.as_p }}
+                                 </form> -->
                              </div>
                              <div class="modal-footer">
                                  <input class='btn' type="text" value='Sign Up'>
@@ -61,8 +69,8 @@
             <a class="h1" href="#">Wayfarer</a>
         </div>
         <div class="col-6 d-flex justify-content-end" id="navbarNav">
-                    <a class="nav-link" href="#" data-toggle="modal" data-target="#signInModal">Sign in</a>
-                    <a class="nav-link" href="#" data-toggle="modal" data-target="#signUpModal">Sign up</a>
+            <a class="nav-link" href="#" data-toggle="modal" data-target="#signInModal">Sign in</a>
+            <a class="nav-link" href="#" data-toggle="modal" data-target="#signUpModal">Sign up</a>
         </div>
     </nav>
     {% block content %}
