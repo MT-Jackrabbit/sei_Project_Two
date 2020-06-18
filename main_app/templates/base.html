@@ -25,13 +25,14 @@
                                  <h1>Log In</h1>
                              </div>
                              <div class="modal-body">
-                               <!--   <form action="{% url 'login' %}" method="POST">
+                                 <form action="{% url 'login' %}" method="POST">
                                     {% csrf_token %}
                                     {{ form.as_p }}
-                                 </form> -->
+                                 </form>
                              </div>
                              <div class="modal-footer">
-                                 <input class='btn' type="text" value="Sign In">
+                                 <input class='btn' type="text" >
+                                 <input class='btn' type="text" value="Sign In" data-toggle="modal" data-target="#signUpModal">
                              </div>
                          </div>
                      </div>
@@ -50,10 +51,10 @@
                                  <h1>Sign Up</h1>
                              </div>
                              <div class="modal-body">
-                                <!-- <form action="{% url 'signup' %}" method="POST">
+                                <form action="{% url 'signup' %}" method="POST">
                                     {% csrf_token %}
                                     {{ form.as_p }}
-                                 </form> -->
+                                 </form>
                              </div>
                              <div class="modal-footer">
                                  <input class='btn' type="text" value='Sign Up'>
@@ -64,6 +65,7 @@
             </div>
         </div>
     </div>
+    <!-- Nav Bar  -->
     <nav class="navbar navbar-light bg-light">
         <div class="col-6">
             <a class="h1" href="#">Wayfarer</a>
