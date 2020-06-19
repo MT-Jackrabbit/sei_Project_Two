@@ -10,9 +10,9 @@
     <article class="article__user">
         <section class="section__profile">
             <img class="profile-img mt-3" src="{{user.imageURL}}" alt="profile pic">
-            <p id="user-name">{{ user.name }}</p>
-            <p id="user-city">{{ user.city }}</p>
-            <p id="member-since">Member since: {{ user.joined_on }}</p>
+            <p id="user-name" class="p__user-profile">{{ user.name }}</p>
+            <p id="user-city" class="p__user-profile">{{ user.city }}</p>
+            <p id="member-since" class="p__user-profile">Member since: {{ user.joined_on }}</p>
             <button id="btn__show-update" type="button" class="btn btn-outline-dark btn-sm mt-3">Change</button>
             <div id="update-form" class="update-form mt-5">
                 <form action="{% url 'edit' user.id %}" method="post">

@@ -2,14 +2,14 @@ table {
     border-collapse: separate;
     border-spacing: 3px 8px;
 }
+
 a {
     outline-color: #7C8A99;
 }
 
-p {
+.p__user-profile {
     margin: 0;
     padding: 0;
-
 }
 
 a:hover {

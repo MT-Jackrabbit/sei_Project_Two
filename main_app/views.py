@@ -56,6 +56,7 @@ def user_edit(req, user_id):
     if req.method == "POST":
         form = Profile_Form(req.POST, instance=user)
         if form.is_valid():
+            print(form)
             form.save()
             return redirect('profile', user_id=user_id)
     else:
