@@ -9,12 +9,12 @@ from .forms import Profile_Form, Post_Form
 
 # Create your views here.
 def home(req):
-    forms = {'logInForm': AuthenticationForm(), 'signUpForm': UserCreationForm()}
+    forms = {'logInForm': AuthenticationForm(), 'signUpForm': UserCreationForm(), 'profileForm': Profile_Form()}
     return render(req, 'home.html', forms)
 
 def user_profile(req, user_id):
-    user = UserProfile.objects.get(id=user_id)
-    # form = Profile_Form()
+    user = UserProfile.objects.get(user =user_id)
+    form = Profile_Form()
     posts = Post.objects.filter(author=user_id).order_by('city')
     form = Profile_Form(instance=user)
     return render(req, 'user/profile.html', {'user': user, 'posts': posts, 'form': form})
@@ -27,15 +27,20 @@ def show_post(req, post_id):
 def sign_up(req):
     err_message = ''
     if req.method == 'POST':
-        form = UserCreationForm(req.POST)
-        if form.is_valid():
-            user = form.save()
+        user_form = UserCreationForm(data = {'username' : req.POST['username'], 'password1' : req.POST['password1'], 'password2' : req.POST['password2']})
+        if user_form.is_valid():
+            user = user_form.save()
+            profile_form = Profile_Form(data = {'name' : req.POST['name'], 'city' : req.POST['city']})
+            new_form = profile_form.save(commit = False)
+            new_form.user_id = user.id
             login(req, user)
-            return redirect('home')
+            new_form.save()
+            return redirect(f'../user/{user.id}')
         else:
-            context = {'signUpForm': form, 'errors': form.errors}
-            print(context['errors'])
-            return render(req, 'home.html', context )
+            print('forms invalid')
+            profile_form = Profile_Form(data = {'name' : req.POST['name'], 'city' : req.POST['city']})
+            # context = {'signUpForm': user_form , 'profileForm': profile_form}
+            # return render(req, 'home.html', context )
 
 """ def log_in(req):
     if req.method == 'POST':
@@ -44,6 +49,7 @@ def sign_up(req):
             context = {'logInForm': form, 'errors': form.errors}
             return render('home', context ) """
 
+    
 def user_edit(req, user_id):
     user = UserProfile.objects.get(id=user_id)
     if req.method == "POST":
