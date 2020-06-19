@@ -60,3 +60,7 @@ span.helptext {
     border-radius: 3px;
 }
 
+table label {
+    display: flex;
+    
+}

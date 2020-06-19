@@ -60,14 +60,11 @@
                              </div>
                              <form action="{% url 'signup' %}" method="POST">
                                 <div class="modal-body">
-                                    {% csrf_token %}
-                                    {% if signUpForm.errors %}
-                                        {{ signUpForm.errors.as_p }}
-                                        {{ signUpForm.as_p }}
-                                    {% else %}
-                                        {{ signUpForm.as_p }}
-                                    {% endif %}
-
+                                    <table>
+                                        {% csrf_token %}
+                                        {{ profileForm.as_table }}
+                                        {{ signUpForm.as_table }}
+                                    </table>
                                 </div>
                                 <div class="modal-footer">
                                     <input class='btn' type="submit" value='Sign Up'>
