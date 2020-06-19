@@ -13,10 +13,10 @@ $('#btn__cancel-update').click(() => {
     $('#btn__show-update').toggle();
 });
 
-$('#sort-desc').click(() => {
-    alert('Sort this list descending');
-});
+// $('#sort-desc').click(() => {
+//     alert('Sort this list descending');
+// });
 
-$('#sort-asc').click(() => {
-    alert('Sort this list ascending');
-});
+// $('#sort-asc').click(() => {
+//     alert('Sort this list ascending');
+// });
