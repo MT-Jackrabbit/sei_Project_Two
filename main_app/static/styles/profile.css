@@ -2,8 +2,14 @@ table {
     border-collapse: separate;
     border-spacing: 3px 8px;
 }
+
 a {
     outline-color: #7C8A99;
+}
+
+.p__user-profile {
+    margin: 0;
+    padding: 0;
 }
 
 a:hover {
@@ -24,7 +30,7 @@ label {
     flex-direction: column;
     align-items: center;
     width: 25%;
-    min-width: 200px;
+    min-width: 250px;
     height: 100vh;
     background-color: lightgray;
 }
