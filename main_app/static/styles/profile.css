@@ -1,3 +1,20 @@
+table {
+    border-collapse: separate;
+    border-spacing: 3px 8px;
+}
+a {
+    outline-color: #7C8A99;
+}
+
+a:hover {
+    text-decoration: none;
+    color: inherit;
+}
+
+label {
+    margin: 0;
+}
+
 .article__user {
     display: flex;
 }
@@ -12,9 +29,10 @@
     background-color: lightgray;
 }
 
-.section__post__titles {
-    width:75%;
+.section__post-titles {
+    width:60%;
     height: 100vh;
+    padding-left: 20px;
 }
 
 .profile-img {
@@ -23,10 +41,55 @@
     height: 100px;
 }
 
-.update-form {
+.div__update-btns {
+    display: flex;
+    justify-content: center;
+}
+
+.my-p-class {
+    color: rgba(0,0,0,.6);
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    max-width: 25ch;
+}
+
+.post-card-header {
+    display: flex;
+    justify-content: space-between;
+}
+
+.sort-controls {
+    display: flex;
+    align-items: flex-end;
 }
 
 #user-name {
     font-size: x-large;
     font-weight: bold;
+}
+
+#user-city {
+    font-weight: bold;
+}
+
+#member-since {
+    font-size: xx-small;
+    margin-top: 5px;
+}
+
+#id_name, #id_city {
+    width: 175px;
+    height: 24px;
+    padding-left: 3px;
+    margin-left: 2px;
+    border-radius: 5px;
+    border: none;
+    /* outline-style: outset; */
+    outline-color: #7C8A99;
+    /* outline: none; */
+}
+
+#sort-desc:hover, #sort-asc:hover {
+    cursor: pointer;
 }
