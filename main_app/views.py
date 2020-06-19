@@ -14,15 +14,16 @@ def home(req):
 
 def user_profile(req, user_id):
     user = UserProfile.objects.get(id=user_id)
-    form = Profile_Form()
+    # form = Profile_Form()
     posts = Post.objects.filter(author=user_id).order_by('city')
     form = Profile_Form(instance=user)
     return render(req, 'user/profile.html', {'user': user, 'posts': posts, 'form': form})
 
-def user_show(req, user_id):
-    user = UserProfile.objects.get(id=user_id)
-    context = {'user': user}
-    return render(req, 'user/show.html', context)
+
+def show_post(req, post_id):
+    post = Post.objects.get(id=post_id)
+    context = {'post': post}
+    return render(req, 'user/show_post.html', context)
 
 def sign_up(req):
     err_message = ''
@@ -43,7 +44,6 @@ def sign_up(req):
         if form.is_valid() == False:
             context = {'logInForm': form, 'errors': form.errors}
             return render('home', context ) """
-
 
 def user_edit(req, user_id):
     user = UserProfile.objects.get(id=user_id)
