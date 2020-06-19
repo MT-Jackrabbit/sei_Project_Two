@@ -16,9 +16,9 @@ def user_profile(req, user_id):
     user = UserProfile.objects.get(id=user_id)
     
     if(req.GET.get("sort") == 'asc'):
-        posts = Post.objects.filter(author=user_id).order_by('-city')
+        posts = Post.objects.filter(author=user_id).order_by( '-city__name')
     elif(req.GET.get("sort") == 'desc'):
-        posts = Post.objects.filter(author=user_id).order_by('city')
+        posts = Post.objects.filter(author=user_id).order_by('city__name')
     else:
         posts = Post.objects.filter(author=user_id)
     
