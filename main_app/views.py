@@ -21,10 +21,10 @@ def user_profile(req, user_id):
 
 
 
-def user_show(req, user_id):
-    user = UserProfile.objects.get(id=user_id)
-    context = {'user': user}
-    return render(req, 'user/show.html', context)
+def show_post(req, post_id):
+    post = Post.objects.get(id=post_id)
+    context = {'post': post}
+    return render(req, 'user/show_post.html', context)
 
 def sign_up(req):
     err_message = ''
