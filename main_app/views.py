@@ -15,8 +15,9 @@ def home(req):
 def user_profile(req, user_id):
     user = UserProfile.objects.get(id=user_id)
     form = Profile_Form()
-    return render(req, 'user/profile.html', {'user': user, 'form': form})
-
+    posts = Post.objects.filter(author=user_id).order_by('city')
+    form = Profile_Form(instance=user)
+    return render(req, 'user/profile.html', {'user': user, 'posts': posts, 'form': form})
 
 def user_show(req, user_id):
     user = UserProfile.objects.get(id=user_id)
@@ -43,10 +44,6 @@ def sign_up(req):
             context = {'logInForm': form, 'errors': form.errors}
             return render('home', context ) """
 
-    
-    posts = Post.objects.filter(author=user_id).order_by('city')
-    form = Profile_Form(instance=user)
-    return render(req, 'user/profile.html', {'user': user, 'posts': posts, 'form': form})
 
 def user_edit(req, user_id):
     user = UserProfile.objects.get(id=user_id)
