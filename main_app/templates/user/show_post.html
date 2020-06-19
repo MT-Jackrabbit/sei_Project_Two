@@ -4,7 +4,6 @@
     <link rel="stylesheet" href="{% static 'styles/show_post.css' %}">
 {% endblock %}
 {% block content %}
-
 <section id="section__post-content">
     <div class="card border-light mb-3">
         <div class="card-header">{{ post.title }}</div>
@@ -12,8 +11,7 @@
             <h5 class="card-title">{{ post.author }}, {{ post.city }}</h5>
             <p class="card-text">{{ post.content }}</p>
         </div>
+        <button class="btn-outline-dark btn-sm mt-3 mx-1" id="btn-back" onclick="history.back()">Back</button>
     </div>
 </section>
-    
-
 {% endblock %}
