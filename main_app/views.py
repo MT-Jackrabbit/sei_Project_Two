@@ -19,7 +19,6 @@ def user_profile(req, user_id):
     form = Profile_Form(instance=user)
     return render(req, 'user/profile.html', {'user': user, 'posts': posts, 'form': form})
 
-
 def show_post(req, post_id):
     post = Post.objects.get(id=post_id)
     context = {'post': post}

@@ -1,0 +1,14 @@
+.card {
+    max-width: 90%;
+}
+
+#section__post-content {
+    display: flex;
+    justify-content: center;
+    width: 90%;
+    margin: 20px auto;
+}
+
+#btn-back {
+    margin-bottom: 5px;
+}
