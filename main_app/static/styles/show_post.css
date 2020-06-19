@@ -1,5 +1,5 @@
 .card {
-    max-width: 90%;
+    max-width: 80%;
 }
 
 #section__post-content {
@@ -11,4 +11,10 @@
 
 #btn-back {
     margin-bottom: 5px;
+    width: 60px;
+}
+
+#div__btn-back {
+    display: flex;
+    justify-content: flex-end;
 }
