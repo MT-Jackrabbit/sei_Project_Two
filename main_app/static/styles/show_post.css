@@ -2,6 +2,21 @@
     max-width: 80%;
 }
 
+.card-header {
+    font-size: x-large;
+    font-weight: bold;
+    text-align: center;
+}
+.card-title {
+    font-size: medium;
+    font-weight: bold;
+    text-align: left;
+}
+
+.card-content {
+    text-align: justify;
+}
+
 #section__post-content {
     display: flex;
     justify-content: center;
