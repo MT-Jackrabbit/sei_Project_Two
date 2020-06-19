@@ -14,8 +14,14 @@ def home(req):
 
 def user_profile(req, user_id):
     user = UserProfile.objects.get(id=user_id)
-    # form = Profile_Form()
-    posts = Post.objects.filter(author=user_id).order_by('city')
+    
+    if(req.GET.get("sort") == 'asc'):
+        posts = Post.objects.filter(author=user_id).order_by('-city')
+    elif(req.GET.get("sort") == 'desc'):
+        posts = Post.objects.filter(author=user_id).order_by('city')
+    else:
+        posts = Post.objects.filter(author=user_id)
+    
     form = Profile_Form(instance=user)
     return render(req, 'user/profile.html', {'user': user, 'posts': posts, 'form': form})
 
