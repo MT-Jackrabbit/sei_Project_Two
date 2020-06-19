@@ -44,7 +44,7 @@
                 </div>
             </div>
             {% for post in posts %}
-                <a href="/">
+                <a href="/user/{{ post.id }}/show_post">
                     <div class="card bg-light mb-3 post-card">
                         <div class="card-header">
                            <h5 class="card-title">{{ post.title }}</h5>
