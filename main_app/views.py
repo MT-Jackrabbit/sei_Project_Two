@@ -17,4 +17,7 @@ def user_profile(req, user_id):
     form = Profile_Form()
     return render(req, 'user/profile.html', {'user': user, 'form': form})
 
-
+def user_show(req, user_id):
+    user = UserProfile.objects.get(id=user_id)
+    context = {'user': user}
+    return render(req, 'user/show.html', context)
