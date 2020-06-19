@@ -1,23 +1,61 @@
 {% extends 'base.html' %}
-
+{% load static %}
+{% block sylesheets %}
+    <link rel="stylesheet" href="{% static 'styles/profile.css' %}">
+{% endblock %}
+{% block scripts %}
+    <script src="{% static 'scripts/profile.js' %}" defer></script>
+{% endblock %}
 {% block content %}
-
-    <h1>Welcome To Your Profile</h1>
-    <div class="container">
-        <div class="row">
-            <div id="user-profile" class="col-4">
-                These are just some words.
-                {{user.name}}
-                {{user.city}}
-
-                <form action="" method="post">
-                    {{form.as_p}}
+    <article class="article__user">
+        <section class="section__profile">
+            <img class="profile-img mt-3" src="{{user.imageURL}}" alt="profile pic">
+            <p id="user-name">{{ user.name }}</p>
+            <p id="user-city">{{ user.city }}</p>
+            <p id="member-since">Member since: {{ user.joined_on }}</p>
+            <button id="btn__show-update" type="button" class="btn btn-outline-dark btn-sm mt-3">Change</button>
+            <div id="update-form" class="update-form mt-5">
+                <form action="{% url 'edit' user.id %}" method="post">
+                    <table>
+                        {% csrf_token %}
+                        {{form.as_table}}
+                    </table>
+                    <div class="div__update-btns">
+                        <button id="btn__cancel-update" type="button" class="btn btn-outline-dark btn-sm mt-3 mx-1">Cancel</button>
+                        <button id="btn__user-update" type="submit" class="btn btn-outline-dark btn-sm mt-3 mx-1">Update</button>
+                    </div>
                 </form>
             </div>
-            <div class="col-6 green">
-                Some more words. 
+        </section>
+        <section class="section__post-titles">
+            <div class="post-card-header">
+                <h1>Posts</h1>
+                <div class="sort-controls">
+                    <!-- <a href=""> -->
+                        <svg id="sort-desc" class="bi bi-caret-down" width="25px" height="25px" viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                            <path fill-rule="evenodd" d="M3.204 5L8 10.481 12.796 5H3.204zm-.753.659l4.796 5.48a1 1 0 0 0 1.506 0l4.796-5.48c.566-.647.106-1.659-.753-1.659H3.204a1 1 0 0 0-.753 1.659z"/>
+                        </svg>
+                    <!-- </a> -->
+                    <!-- <a href=""> -->
+                        <svg id="sort-asc" class="bi bi-caret-up" width="25px" height="25px" viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                            <path fill-rule="evenodd" d="M3.204 11L8 5.519 12.796 11H3.204zm-.753-.659l4.796-5.48a1 1 0 0 1 1.506 0l4.796 5.48c.566.647.106 1.659-.753 1.659H3.204a1 1 0 0 1-.753-1.659z"/>
+                        </svg>
+                    <!-- </a> -->
+                </div>
             </div>
-        </div>
-    </div>
-
+            {% for post in posts %}
+                <a href="/">
+                    <div class="card bg-light mb-3 post-card">
+                        <div class="card-header">
+                           <h5 class="card-title">{{ post.title }}</h5>
+                        </div>
+                        <div class="card-body">
+                        <h6 class="card-title">{{ post.city }}</h6>
+                        <p class="card-text my-p-class">{{ post.content }}</p>
+                        </div>
+                    </div>
+                </a>
+            {% endfor %}
+        </section>
+    </article>
 {% endblock %}
