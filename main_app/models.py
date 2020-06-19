@@ -14,7 +14,7 @@ class UserProfile(models.Model):
     imageURL = models.CharField(max_length=250)
     city = models.ForeignKey(City, on_delete=models.CASCADE)
     # will create the date and set editable=False and blank=True
-    joined_on = models.DateTimeField(auto_now_add=True)
+    joined_on = models.DateField(auto_now_add=True)
 
     def __str__(self):
         return self.name

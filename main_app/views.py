@@ -17,7 +17,46 @@ def user_profile(req, user_id):
     form = Profile_Form()
     return render(req, 'user/profile.html', {'user': user, 'form': form})
 
+
 def user_show(req, user_id):
     user = UserProfile.objects.get(id=user_id)
     context = {'user': user}
     return render(req, 'user/show.html', context)
+
+def sign_up(req):
+    err_message = ''
+    if req.method == 'POST':
+        form = UserCreationForm(req.POST)
+        if form.is_valid():
+            user = form.save()
+            login(req, user)
+            return redirect('home')
+        else:
+            context = {'signUpForm': form, 'errors': form.errors}
+            print(context['errors'])
+            return render(req, 'home.html', context )
+
+""" def log_in(req):
+    if req.method == 'POST':
+        form == AuthenticationForm(req.POST)
+        if form.is_valid() == False:
+            context = {'logInForm': form, 'errors': form.errors}
+            return render('home', context ) """
+
+    
+    posts = Post.objects.filter(author=user_id).order_by('city')
+    form = Profile_Form(instance=user)
+    return render(req, 'user/profile.html', {'user': user, 'posts': posts, 'form': form})
+
+def user_edit(req, user_id):
+    user = UserProfile.objects.get(id=user_id)
+    if req.method == "POST":
+        form = Profile_Form(req.POST, instance=user)
+        if form.is_valid():
+            form.save()
+            return redirect('profile', user_id=user_id)
+    else:
+        form = Profile_Form(instance=user)
+    
+    return render(req, 'user/profile.html', {'user': user, 'form': form})
+

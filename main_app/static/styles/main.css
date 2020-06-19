@@ -8,12 +8,23 @@ body a {
     color: black;
 }
 
+
 .carousel-item, .active {
     height: 500px;
+
+p {
+    margin: 0;
+    padding: 0;
+
 }
 
 .container {
     display: flex;
     justify-content: space-between;
+}
+
+span.helptext {
+    font-size: small;
+    display: block;
 }
 
