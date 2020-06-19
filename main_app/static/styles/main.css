@@ -8,14 +8,12 @@ body a {
     color: black;
 }
 
-
 .carousel-item, .active {
     height: 500px;
 
 p {
     margin: 0;
     padding: 0;
-
 }
 
 .container {
@@ -29,6 +27,6 @@ span.helptext {
 }
 
 table label {
-    display: flex;
-    
+    display: flex; 
 }
+
