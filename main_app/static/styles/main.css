@@ -12,3 +12,8 @@ body a {
     display: flex;
     justify-content: space-between;
 }
+
+span.helptext {
+    font-size: small;
+    display: block;
+}
