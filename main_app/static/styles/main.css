@@ -43,19 +43,21 @@ span.helptext {
     background-image: url("https://images.unsplash.com/photo-1565018996595-4cce5ab241cb?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1949&q=80");
 }
 
-#div__login-icon, #div__signup-icon {
+#div__login-icon, #div__signup-icon, #div__logout-icon, #div__profile-icon {
     position: relative;
 }
 
-#login-txt, #signup-txt {
+#login-txt, #signup-txt, #logout-txt, #profile-txt {
     position: absolute;
-    bottom: -25px;
-    left: -30px;
+    bottom: -40px;
+    left: 10px;
     font-size: 12px;
     background-color: lightgrey;
     opacity: 0;
-    padding: 2px;
+    padding: 3px;
     border-radius: 3px;
+    white-space: nowrap;
+    z-index: 3;
 }
 
 th {

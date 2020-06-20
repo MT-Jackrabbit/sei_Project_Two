@@ -19,7 +19,7 @@ def on_login(req):
 
 # --- user_profile route --- #
 def user_profile(req, user_id):
-    user = UserProfile.objects.get(id=user_id)
+    profile = UserProfile.objects.get(id=user_id)
     
     if(req.GET.get("sort") == 'asc'):
         posts = Post.objects.filter(author=user_id).order_by( '-city__name')
@@ -28,8 +28,8 @@ def user_profile(req, user_id):
     else:
         posts = Post.objects.filter(author=user_id)
     
-    form = Profile_Form(instance=user)
-    return render(req, 'user/profile.html', {'user': user, 'posts': posts, 'form': form})
+    form = Profile_Form(instance=profile)
+    return render(req, 'user/profile.html', {'profile': profile, 'posts': posts, 'form': form})
 
 # --- user_edit route --- #
 def user_edit(req, user_id):
