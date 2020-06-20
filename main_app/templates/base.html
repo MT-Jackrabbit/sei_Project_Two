@@ -31,7 +31,6 @@
                                 <div class="modal-body">
                                     {% csrf_token %}
                                     {% if logInForm.errors %}
-                                        {{ logInForm.errors.as_p }}
                                         {{ logInForm.as_p }}
                                     {% else %}
                                         {{ logInForm.as_p }}
@@ -114,17 +113,17 @@
     {% block content %}
     {% endblock %}
 </body>
-{% if signUpForm.errors %}
-<script type='text/javascript'>
+{% if errors %}
+<script type='text/javascript' defer>
     $(window).on('load', function(){
-        $('#signUpModal').modal('show');
+        $('#logInModal').modal('show');
     });
 </script>
 {% endif %}
-{% if logInForm.errors %}
-<script type='text/javascript'>
+{% if errors %}
+<script type='text/javascript' defer>
     $(window).on('load', function(){
-        $('#logInModal').modal('show');
+        $('#signUpModal').modal('show');
     });
 </script>
 {% endif %}

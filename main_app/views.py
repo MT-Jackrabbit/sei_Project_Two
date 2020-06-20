@@ -34,19 +34,19 @@ def sign_up(req):
     err_message = ''
     if req.method == 'POST':
         user_form = UserCreationForm(data = {'username' : req.POST['username'], 'password1' : req.POST['password1'], 'password2' : req.POST['password2']})
-        if user_form.is_valid():
+        profile_form = Profile_Form(data = {'name' : req.POST['name'], 'city' : req.POST['city']})
+        if user_form.is_valid() and profile_form.is_valid():
             user = user_form.save()
             profile_form = Profile_Form(data = {'name' : req.POST['name'], 'city' : req.POST['city']})
             new_form = profile_form.save(commit = False)
             new_form.user_id = user.id
             login(req, user)
             new_form.save()
-            return redirect(f'../user/{user.id}')
+            return redirect(f'../user/{new_form.id}')
         else:
-            print('forms invalid')
-            profile_form = Profile_Form(data = {'name' : req.POST['name'], 'city' : req.POST['city']})
-            # context = {'signUpForm': user_form , 'profileForm': profile_form}
-            # return render(req, 'home.html', context )
+            context = {'signUpForm': user_form, 'profileForm': profile_form, 'errors': user_form.errors}
+            print(context)
+            return render(req, 'home.html', context )
 
 """ def log_in(req):
     if req.method == 'POST':
