@@ -12,8 +12,14 @@ def home(req):
     forms = {'logInForm': AuthenticationForm(), 'signUpForm': UserCreationForm(), 'profileForm': Profile_Form()}
     return render(req, 'home.html', forms)
 
+# --- on_login redirect route --- #
+def on_login(req):
+    profile = UserProfile.objects.get(user=req.user.id)
+    return redirect('profile', profile.id)
+
+# --- user_profile route --- #
 def user_profile(req, user_id):
-    user = UserProfile.objects.get(id=user_id)
+    profile = UserProfile.objects.get(id=user_id)
     
     if(req.GET.get("sort") == 'asc'):
         posts = Post.objects.filter(author=user_id).order_by( '-city__name')
@@ -22,40 +28,10 @@ def user_profile(req, user_id):
     else:
         posts = Post.objects.filter(author=user_id)
     
-    form = Profile_Form(instance=user)
-    return render(req, 'user/profile.html', {'user': user, 'posts': posts, 'form': form})
+    form = Profile_Form(instance=profile)
+    return render(req, 'user/profile.html', {'profile': profile, 'posts': posts, 'form': form})
 
-def show_post(req, post_id):
-    post = Post.objects.get(id=post_id)
-    context = {'post': post}
-    return render(req, 'user/show_post.html', context)
-
-def sign_up(req):
-    err_message = ''
-    if req.method == 'POST':
-        user_form = UserCreationForm(data = {'username' : req.POST['username'], 'password1' : req.POST['password1'], 'password2' : req.POST['password2']})
-        profile_form = Profile_Form(data = {'name' : req.POST['name'], 'city' : req.POST['city']})
-        if user_form.is_valid() and profile_form.is_valid():
-            user = user_form.save()
-            profile_form = Profile_Form(data = {'name' : req.POST['name'], 'city' : req.POST['city']})
-            new_form = profile_form.save(commit = False)
-            new_form.user_id = user.id
-            login(req, user)
-            new_form.save()
-            return redirect(f'../user/{new_form.id}')
-        else:
-            context = {'signUpForm': user_form, 'profileForm': profile_form, 'errors': user_form.errors}
-            print(context)
-            return render(req, 'home.html', context )
-
-""" def log_in(req):
-    if req.method == 'POST':
-        form == AuthenticationForm(req.POST)
-        if form.is_valid() == False:
-            context = {'logInForm': form, 'errors': form.errors}
-            return render('home', context ) """
-
-    
+# --- user_edit route --- #
 def user_edit(req, user_id):
     user = UserProfile.objects.get(id=user_id)
     if req.method == "POST":
@@ -68,4 +44,42 @@ def user_edit(req, user_id):
         form = Profile_Form(instance=user)
     
     return render(req, 'user/profile.html', {'user': user, 'form': form})
+
+# --- shoe_post route --- #
+def show_post(req, post_id):
+    post = Post.objects.get(id=post_id)
+    context = {'post': post}
+    return render(req, 'user/show_post.html', context)
+
+
+######## Admin Routes ########
+
+# --- sign_up route --- #
+def sign_up(req):
+    err_message = ''
+    if req.method == 'POST':
+        user_form = UserCreationForm(data = {'username' : req.POST['username'], 'password1' : req.POST['password1'], 'password2' : req.POST['password2']})
+        profile_form = Profile_Form(data = {'name' : req.POST['name'], 'city' : req.POST['city']})
+        if user_form.is_valid() and profile_form.is_valid():
+            user = user_form.save()
+            profile_form = Profile_Form(data = {'name' : req.POST['name'], 'city' : req.POST['city']})
+            new_form = profile_form.save(commit = False)
+            new_form.user_id = user.id
+            login(req, user)
+            new_form.save()
+            #using the profile id so that this
+            profile = UserProfile.objects.get(user=user.id)
+            return redirect('profile', profile.id)
+        else:
+            context = {'signUpForm': user_form, 'profileForm': profile_form, 'errors': user_form.errors}
+            print(context)
+            return render(req, 'home.html', context )
+
+""" def log_in(req):
+    if req.method == 'POST':
+        form == AuthenticationForm(req.POST)
+        if form.is_valid() == False:
+            context = {'logInForm': form, 'errors': form.errors}
+            return render('home', context ) """
+
 

@@ -15,3 +15,19 @@ $('#a__signup').mouseenter(() => {
 $('#a__signup').mouseleave(() => {
     $('#signup-txt').css('opacity', '0');
 });
+
+$('#a__logout').mouseenter(() => {
+    $('#logout-txt').css('opacity', '1');
+});
+
+$('#a__logout').mouseleave(() => {
+    $('#logout-txt').css('opacity', '0');
+});
+
+$('#a__profile').mouseenter(() => {
+    $('#profile-txt').css('opacity', '1');
+});
+
+$('#a__profile').mouseleave(() => {
+    $('#profile-txt').css('opacity', '0');
+});
