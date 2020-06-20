@@ -31,12 +31,14 @@
             <div class="post-card-header">
                 <h1>Posts</h1>
                 <div class="sort-controls">
-                    <a href="/user/{{user.id}}?sort=desc">
+                    <!-- <a href="/user/{{user.id}}?sort=desc"> -->
+                    <a href="{% url 'profile' user.id %}?sort=desc">
                         <svg id="sort-desc" class="bi bi-caret-down" width="25px" height="25px" viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
                             <path fill-rule="evenodd" d="M3.204 5L8 10.481 12.796 5H3.204zm-.753.659l4.796 5.48a1 1 0 0 0 1.506 0l4.796-5.48c.566-.647.106-1.659-.753-1.659H3.204a1 1 0 0 0-.753 1.659z"/>
                         </svg>
                     </a>
-                    <a href="/user/{{user.id}}?sort=asc">
+                    <!-- <a href="/user/{{user.id}}?sort=asc"> -->
+                    <a href="{% url 'profile' user.id %}?sort=asc">
                         <svg id="sort-asc" class="bi bi-caret-up" width="25px" height="25px" viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
                             <path fill-rule="evenodd" d="M3.204 11L8 5.519 12.796 11H3.204zm-.753-.659l4.796-5.48a1 1 0 0 1 1.506 0l4.796 5.48c.566.647.106 1.659-.753 1.659H3.204a1 1 0 0 1-.753-1.659z"/>
                         </svg>
@@ -44,7 +46,8 @@
                 </div>
             </div>
             {% for post in posts %}
-                <a href="/user/{{ post.id }}/show_post">
+                <!-- <a href="/user/{{ post.id }}/show_post"> -->
+                <a href="{% url 'show_post' post.id %}">
                     <div class="card bg-light mb-3 post-card">
                         <div class="card-header">
                            <h5 class="card-title">{{ post.title }}</h5>

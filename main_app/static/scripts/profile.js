@@ -12,11 +12,3 @@ $('#btn__cancel-update').click(() => {
     $('#update-form').hide();
     $('#btn__show-update').toggle();
 });
-
-// $('#sort-desc').click(() => {
-//     alert('Sort this list descending');
-// });
-
-// $('#sort-asc').click(() => {
-//     alert('Sort this list ascending');
-// });
