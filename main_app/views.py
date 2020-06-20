@@ -12,6 +12,12 @@ def home(req):
     forms = {'logInForm': AuthenticationForm(), 'signUpForm': UserCreationForm(), 'profileForm': Profile_Form()}
     return render(req, 'home.html', forms)
 
+# --- on_login redirect route --- #
+def on_login(req):
+    profile = UserProfile.objects.get(user=req.user.id)
+    return redirect('profile', profile.id)
+
+# --- user_profile route --- #
 def user_profile(req, user_id):
     user = UserProfile.objects.get(id=user_id)
     
@@ -25,11 +31,30 @@ def user_profile(req, user_id):
     form = Profile_Form(instance=user)
     return render(req, 'user/profile.html', {'user': user, 'posts': posts, 'form': form})
 
+# --- user_edit route --- #
+def user_edit(req, user_id):
+    user = UserProfile.objects.get(id=user_id)
+    if req.method == "POST":
+        form = Profile_Form(req.POST, instance=user)
+        if form.is_valid():
+            print(form)
+            form.save()
+            return redirect('profile', user_id=user_id)
+    else:
+        form = Profile_Form(instance=user)
+    
+    return render(req, 'user/profile.html', {'user': user, 'form': form})
+
+# --- shoe_post route --- #
 def show_post(req, post_id):
     post = Post.objects.get(id=post_id)
     context = {'post': post}
     return render(req, 'user/show_post.html', context)
 
+
+######## Admin Routes ########
+
+# --- sign_up route --- #
 def sign_up(req):
     err_message = ''
     if req.method == 'POST':
@@ -41,7 +66,9 @@ def sign_up(req):
             new_form.user_id = user.id
             login(req, user)
             new_form.save()
-            return redirect(f'../user/{user.id}')
+            #using the profile id so that this
+            profile = UserProfile.objects.get(user=user.id)
+            return redirect('profile', profile.id)
         else:
             print('forms invalid')
             profile_form = Profile_Form(data = {'name' : req.POST['name'], 'city' : req.POST['city']})
@@ -55,17 +82,4 @@ def sign_up(req):
             context = {'logInForm': form, 'errors': form.errors}
             return render('home', context ) """
 
-    
-def user_edit(req, user_id):
-    user = UserProfile.objects.get(id=user_id)
-    if req.method == "POST":
-        form = Profile_Form(req.POST, instance=user)
-        if form.is_valid():
-            print(form)
-            form.save()
-            return redirect('profile', user_id=user_id)
-    else:
-        form = Profile_Form(instance=user)
-    
-    return render(req, 'user/profile.html', {'user': user, 'form': form})
 
