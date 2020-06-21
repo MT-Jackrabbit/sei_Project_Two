@@ -1,0 +1,52 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block sylesheets %}
+    <link rel="stylesheet" href="{% static 'styles/city_profile.css' %}">
+{% endblock %}
+{% block scripts %}
+    <!-- <script src="{% static 'scripts/profile.js' %}" defer></script> -->
+{% endblock %}
+{% block content %}
+<article class="article__cities">
+    <section class="section__cities">
+        {% for city in cities %}
+            <a href="{% url 'cities' city.id %}">
+                <h3>{{city.name}}</h3>
+            </a>
+        {% endfor %}
+    </section>
+    <section class="section__post-titles">
+        <div class="post-card-header">
+            <h1>{{city.name}}</h1>
+            <img id="img_city-pic" src="{{city.img}}" alt="{{city.name}} Pic">
+        </div>
+        <div>
+            <h4>Posts</h4>
+
+            <a href="{% url 'add_post' %}">Add Post +</a>
+        </div>
+        {% for post in posts %}
+            <!-- <a href="/user/{{ post.id }}/show_post"> -->
+            <a href="{% url 'show_post' post.id %}">
+                <div class="card bg-light mb-3 post-card">
+                    <div class="card-header">
+                       <h5 class="card-title">{{ post.title }}</h5>
+                    </div>
+                    <div class="card-body">
+                    <h6 class="card-title">{{ post.city }}</h6>
+                    <p class="card-text my-p-class">{{ post.content }}</p>
+                    </div>
+                    <div class="div__update-btns">
+                        <a href="{% url 'del_post' post.id %}">
+                            <button id="btn__post-delete" type="button" class="btn btn-outline-dark btn-sm mt-3 mx-1">Delete</button>
+                        </a>
+                        <a href="{% url 'edit_post' post.id %}">
+                            <button id="btn__post-update" type="submit" class="btn btn-outline-dark btn-sm mt-3 mx-1">Update</button>
+                        </a>
+                    </div>
+                </div>
+            </a>
+        {% endfor %}
+    </section>
+</article>
+{% endblock %}
