@@ -3,7 +3,7 @@ from django.http import HttpResponse
 from django.contrib.auth import login
 from django.contrib.auth.forms import UserCreationForm, AuthenticationForm
 from django.contrib.auth.decorators import login_required
-
+from django.contrib.auth.models import User
 from .models import UserProfile, Post, City
 from .forms import Profile_Form, Post_Form
 
@@ -58,7 +58,13 @@ def show_post(req, post_id):
 
 # --- add_post route --- #
 def add_post(req):
-    return HttpResponse("Adding a new post")
+    if req.method == 'POST':
+        city = City.objects.get(id = req.POST['cityId'])
+        user = User.objects.get(id = req.POST['userId'])
+        profile = UserProfile.objects.get(user_id = req.POST['userId'])
+        post = Post(title = req.POST['title'],content = req.POST['content'], author = profile, city = city, user = user)
+        post.save()
+        return redirect('cities', user_id = user.id, city_id = city.id )
 
 # --- del_post route --- #
 def del_post(req, post_id):
@@ -69,11 +75,13 @@ def edit_post(req, post_id):
     return HttpResponse(f"Editing post id={post_id}")
 
 # --- city_posts route --- #
-def city_posts(req, city_id):
+def city_posts(req, user_id, city_id):
+    post_form = Post_Form(data ={'city': city_id})
     cities = City.objects.all().order_by('name')
     city = City.objects.get(id=city_id)
     posts = Post.objects.filter(city_id=city_id)
-    return render(req, 'cities/city_profile.html', {'city': city, 'cities': cities, 'posts': posts})
+    user = User.objects.get(id=user_id)
+    return render(req, 'cities/city_profile.html', {'user': user, 'city': city, 'cities': cities, 'posts': posts, 'postForm': post_form})
 
 
 ######## Admin Routes ########
