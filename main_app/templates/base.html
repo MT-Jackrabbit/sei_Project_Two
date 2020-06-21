@@ -27,7 +27,7 @@
                              <div class="modal-header">
                                  <h1>Log In</h1>
                              </div>
-                             <form action="{% url 'login'%}" method="POST">
+                             <form action="{% url 'on_login'%}" method="POST">
                                 <div class="modal-body">
                                     {% csrf_token %}
                                     {% if logInForm.errors %}
@@ -125,17 +125,11 @@
     {% block content %}
     {% endblock %}
 </body>
-{% if errors %}
+{% if profileForm.errors %}
 <script type='text/javascript' defer>
     $(window).on('load', function(){
-        $('#logInModal').modal('show');
-    });
-</script>
-{% endif %}
-{% if errors %}
-<script type='text/javascript' defer>
-    $(window).on('load', function(){
-        $('#signUpModal').modal('show');
+        $('.modal').removeAttr('display', 'none');
+        $('.modal').attr('display', 'block');
     });
 </script>
 {% endif %}

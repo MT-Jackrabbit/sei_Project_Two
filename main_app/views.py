@@ -14,8 +14,13 @@ def home(req):
 
 # --- on_login redirect route --- #
 def on_login(req):
-    profile = UserProfile.objects.get(user=req.user.id)
-    return redirect('profile', profile.id)
+    form = AuthenticationForm(data = req.POST)
+    if form.is_valid():
+        profile = UserProfile.objects.get(user=req.user.id)
+        return redirect('profile', profile.id)
+    else:
+        context = {'logInForm': form, 'signUpForm': UserCreationForm(), 'profileForm': Profile_Form(), 'errors': form.errors}
+        return render(req, 'home.html', context )
 
 # --- user_profile route --- #
 def user_profile(req, user_id):
@@ -75,11 +80,6 @@ def sign_up(req):
             print(context)
             return render(req, 'home.html', context )
 
-""" def log_in(req):
-    if req.method == 'POST':
-        form == AuthenticationForm(req.POST)
-        if form.is_valid() == False:
-            context = {'logInForm': form, 'errors': form.errors}
-            return render('home', context ) """
+
 
 
