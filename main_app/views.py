@@ -4,7 +4,7 @@ from django.contrib.auth import login
 from django.contrib.auth.forms import UserCreationForm, AuthenticationForm
 from django.contrib.auth.decorators import login_required
 
-from .models import UserProfile, Post
+from .models import UserProfile, Post, City
 from .forms import Profile_Form, Post_Form
 
 # Create your views here.
@@ -45,11 +45,30 @@ def user_edit(req, user_id):
     
     return render(req, 'user/profile.html', {'user': user, 'form': form})
 
-# --- shoe_post route --- #
+# --- show_post route --- #
 def show_post(req, post_id):
     post = Post.objects.get(id=post_id)
     context = {'post': post}
     return render(req, 'user/show_post.html', context)
+
+# --- add_post route --- #
+def add_post(req):
+    return HttpResponse("Adding a new post")
+
+# --- del_post route --- #
+def del_post(req, post_id):
+    return HttpResponse(f"Deleting post id={post_id}")
+
+# --- edit_post route --- #
+def edit_post(req, post_id):
+    return HttpResponse(f"Editing post id={post_id}")
+
+# --- city_posts route --- #
+def city_posts(req, city_id):
+    cities = City.objects.all().order_by('name')
+    city = City.objects.get(id=city_id)
+    posts = Post.objects.filter(city_id=city_id)
+    return render(req, 'cities/city_profile.html', {'city': city, 'cities': cities, 'posts': posts})
 
 
 ######## Admin Routes ########

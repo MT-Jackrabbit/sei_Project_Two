@@ -1,0 +1,58 @@
+.article__cities {
+    display: flex;
+}
+
+.section__cities {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 25%;
+    min-width: 250px;
+    height: 100vh;
+    background-color: lightgray;
+}
+
+#img_city-pic {
+    height: 125px;
+    width: 250px;
+}
+
+.section__post-titles {
+    width:60%;
+    height: 100vh;
+    padding-left: 20px;
+}
+
+.div__update-btns {
+    display: flex;
+    justify-content: flex-end;
+    margin: 0 5px 8px 0;
+}
+
+.card-body {
+    padding-bottom: 0;
+}
+
+/* sets properties so only 25 characters are shown on post, hides the rest */
+.my-p-class {
+    color: rgba(0,0,0,.6);
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    max-width: 25ch;
+}
+
+.post-card-header {
+    display: flex;
+    justify-content: space-between;
+    margin: 10px 0;
+}
+
+/* .sort-controls {
+    display: flex;
+    align-items: flex-end;
+}
+
+#sort-desc:hover, #sort-asc:hover {
+    cursor: pointer;
+} */
