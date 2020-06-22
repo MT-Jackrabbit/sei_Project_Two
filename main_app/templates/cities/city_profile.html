@@ -96,7 +96,7 @@
     <div class="row">
         <div class="col-md-12">
              <div class="modal fade" id="createCityModal">
-                 <div class="modal-dialog show modal-dialog-centered modal-lg">
+                 <div class="modal-dialog show modal-dialog-centered">
                      <div class="modal-content d-flex align-items-center">
                          <div class="modal-header">
                              <h1>Create a new post</h1>
@@ -105,25 +105,21 @@
                             <div class="modal-body">
                                 {% csrf_token %}
                                 <div class="row m-1">
-                                    <div class="col-sm-3 d-flex align-items-end">
-                                        City:
-                                    </div>
-                                    <div class="col m-1">
+                                    <div class="col">
                                         {{ postForm.city }}
                                     </div>
                                 </div>
-                                <div class="row m-1">
+                                <div class="row mx-1">
                                     <div class="col">
-                                        Title:
+                                        <h6 class="mb-0 mt-2">Title:</h6>
                                     </div>
+                                </div>
+                                <div class="row mx-1">
                                     <div class="col">
                                         {{ postForm.title }}
                                     </div>
                                 </div>
                                 <div class="row m-1">
-                                    <div class="col">
-                                        Content:
-                                    </div>
                                     <div class="col">
                                         {{ postForm.content }}
                                     </div>
