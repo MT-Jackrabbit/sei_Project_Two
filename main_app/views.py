@@ -72,7 +72,15 @@ def del_post(req, post_id):
 
 # --- edit_post route --- #
 def edit_post(req, post_id):
-    return HttpResponse(f"Editing post id={post_id}")
+    print(req.POST)
+    city = City.objects.get(id = req.POST['city'])
+    user = User.objects.get(id = req.POST['user'])
+    profile = UserProfile.objects.get(user_id = req.POST['user'])
+    post= Post.objects.get(id = post_id)
+    post_form = Post(req.POST, instance = post)
+    if req.method == 'POST':
+        post_form.save()
+        return redirect('cities', user_id = user.id, city_id = city.id)
 
 # --- city_posts route --- #
 def city_posts(req, user_id, city_id):
