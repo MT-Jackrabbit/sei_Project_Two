@@ -76,4 +76,28 @@
         </div>
     </div>
 </div>
+    <!-- Delete Modal -->
+<div class="container" id="delete">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="modal fade" id="deleteModal">
+                <div class="modal-dialog modal-dialog-confirm">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h1>Are you sure you want to delete {{ post.title }}?</h1>
+                        </div>
+                            <form action="{% url 'del_post' %}" method="PUT">
+                        <div class="modal-body">
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-light" data-dismiss="modal">Cancel</button>
+                            <button class='btn btn-danger'>Delete</button>
+                        </div>
+                            </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
 {% endblock %}

@@ -67,7 +67,9 @@ def add_post(req):
         return redirect('cities', user_id = user.id, city_id = city.id )
 
 # --- del_post route --- #
+@login_required
 def del_post(req, post_id):
+    Post.objects.get(id=post_id).delete()
     return HttpResponse(f"Deleting post id={post_id}")
 
 # --- edit_post route --- #
