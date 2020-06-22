@@ -75,7 +75,8 @@ def add_post(req):
 
 # --- del_post route --- #
 def del_post(req, post_id):
-    return HttpResponse(f"Deleting post id={post_id}")
+    Post.objects.get(id=post_id).delete()
+    return redirect('cities', req.POST['del_city'])
 
 # --- edit_post route --- #
 def edit_post(req, post_id):

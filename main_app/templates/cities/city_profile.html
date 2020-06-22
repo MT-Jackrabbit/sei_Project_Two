@@ -49,14 +49,14 @@
             <a href="{% url 'show_post' post.id %}">
                 <div class="card bg-light mb-3 post-card">
                     <div class="card-header">
-                       <h5 class="card-title">{{ post.title }}</h5>
+                       <h5 class="card-title">{{ post.id }}{{ post.title }}</h5>
                     </div>
                     <div class="card-body">
                     <h6 class="card-title">{{ post.city }}</h6>
                     <p class="card-text my-p-class">{{ post.content }}</p>
                     </div>
                     <div class="div__update-btns">
-                        <a href="{% url 'del_post' post.id %}">
+                        <a href="#" data-toggle="modal" data-target="#delete{{ post.id }}Modal">
                             <button id="btn__post-delete" type="button" class="btn btn-outline-dark btn-sm mt-3 mx-1">Delete</button>
                         </a>
                         <a href="#" data-toggle="modal" data-target="#update{{ post.id }}Modal">
@@ -75,7 +75,7 @@
                              <div class="modal-dialog show modal-dialog-centered">
                                 <div class="modal-content">
                                     <div class="row d-flex justify-content-center">
-                                        <div class="col-sm-8">
+                                        <div class="col-sm-9">
                                             <div class="modal-header">
                                                 <h1>Update post</h1>
                                             </div>
@@ -98,7 +98,10 @@
                                                     <input type="hidden" name="user" value="{{ user.id }}">
                                                 </div>
                                                 <div class="modal-footer">
-                                                    <input class='btn' type="submit" value="Submit">
+                                                    <a href="#" data-toggle= "modal" data-target="#update{{ post.id }}Modal">
+                                                        <button id="btn__cancel-update" class="btn btn-outline-dark btn-sm mt-3 mx-1">Cancel</button>
+                                                    </a>
+                                                    <button id="btn__confirm-update" class="btn btn-outline-dark btn-sm mt-3 mx-1" type="submit">Submit</button>
                                                 </div>
                                             </form>
                                         </div>
@@ -106,6 +109,32 @@
                                 </div>
                              </div>
                          </div>
+                    </div>
+                </div>
+            </div>
+    <!-- Delete Modal -->
+            <div class="container" id="delete">
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="modal fade" id="delete{{ post.id }}Modal">
+                            <div class="modal-dialog modal-dialog-confirm">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h1>Are you sure you want to delete {{ post.title }}?</h1>
+                                    </div>
+                                        <form action=" {% url 'del_post' post.id %}" method="POST">
+                                            {% csrf_token %}
+                                        <input id="del_city" type="hidden" name="del_city" value="{{ city.id }}">
+                                    <div class="modal-body">
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button type="button" class="btn btn-light" data-dismiss="modal">Cancel</button>
+                                        <button class='btn btn-danger'>Delete</button>
+                                    </div>
+                                        </form>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -150,9 +179,13 @@
                                 </div>
                                  <input type="hidden" id="userId" name="userId" value="{{ user.id }}">
                                  <input type="hidden" id="cityId" name="cityId" value="{{ city.id }}">
+                                 <input type="hidden" id="authorId" name="authorId" value="{{ city.id }}">
                             </div>
                             <div class="modal-footer">
-                                <input class='btn' type="submit" value="Submit">
+                                <a href="#" data-toggle= "modal" data-target="#createCityModal">
+                                    <button id="btn__cancel-post" class="btn btn-outline-dark btn-sm">Cancel</button>
+                                </a>
+                                <button id="btn__confirm-post" class="btn btn-outline-dark btn-sm" type="submit">Submit</button>
                             </div>
                         </form>
                      </div>
@@ -161,4 +194,5 @@
         </div>
     </div>
 </div>
+
 {% endblock %}
