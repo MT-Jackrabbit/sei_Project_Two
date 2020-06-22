@@ -13,7 +13,7 @@
 <article class="article__cities">
     <section class="section__cities">
         {% for city in cities %}
-            <a href="{% url 'cities' user.id city.id %}">
+            <a href="{% url 'cities' city.id %}">
                 <h3>{{city.name}}</h3>
             </a>
         {% endfor %}
@@ -104,7 +104,30 @@
                          <form action="{% url 'add_post' %}" method="POST">
                             <div class="modal-body">
                                 {% csrf_token %}
-                                 {{ postForm.as_table }}
+                                <div class="row m-1">
+                                    <div class="col-sm-3 d-flex align-items-end">
+                                        City:
+                                    </div>
+                                    <div class="col m-1">
+                                        {{ postForm.city }}
+                                    </div>
+                                </div>
+                                <div class="row m-1">
+                                    <div class="col">
+                                        Title:
+                                    </div>
+                                    <div class="col">
+                                        {{ postForm.title }}
+                                    </div>
+                                </div>
+                                <div class="row m-1">
+                                    <div class="col">
+                                        Content:
+                                    </div>
+                                    <div class="col">
+                                        {{ postForm.content }}
+                                    </div>
+                                </div>
                                  <input type="hidden" id="userId" name="userId" value="{{ user.id }}">
                                  <input type="hidden" id="cityId" name="cityId" value="{{ city.id }}">
                             </div>
