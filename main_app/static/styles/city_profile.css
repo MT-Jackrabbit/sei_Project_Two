@@ -8,7 +8,7 @@
     align-items: center;
     width: 25%;
     min-width: 250px;
-    height: 100vh;
+    height: 150vh;
     background-color: lightgray;
 }
 
@@ -20,6 +20,7 @@
     font-size: 20px;
     text-align: left;
     margin: 0 4px 16px 4px;
+    background-color: #F0F1F2;
 }
 
 .img_city-thumb {
