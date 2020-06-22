@@ -77,9 +77,8 @@ label {
     margin-left: 2px;
     border-radius: 5px;
     border: none;
-    /* outline-style: outset; */
+    background-color: white;
     outline-color: #7C8A99;
-    /* outline: none; */
 }
 
 #sort-desc:hover, #sort-asc:hover {
