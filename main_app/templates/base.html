@@ -74,18 +74,32 @@
             <div class="col-md-12">
                  <div class="modal fade" id="logInModal">
                      <div class="modal-dialog show modal-dialog-centered">
-                         <div class="modal-content">
+                         <div id="login-modal-content" class="modal-content">
                              <div class="modal-header">
                                  <h1>Log In</h1>
                              </div>
                              <form action="{% url 'on_login'%}" method="POST">
                                 <div class="modal-body">
                                     {% csrf_token %}
-                                    {% if logInForm.errors %}
-                                        {{ logInForm.as_p }}
-                                    {% else %}
-                                        {{ logInForm.as_p }}
-                                    {% endif %}
+                                    <table>
+                                        {% if logInForm.errors %}
+                                        <tr>
+                                            <td colspan="2">
+                                                <p id="login-errors" hidden>Errors:</p>
+                                                <p class="p__error-msg">Please provide a valid username or password!</p>
+                                            </td>
+                                        </tr>
+                                        {% endif %}
+                                    <!-- {{ logInForm.as_p }} -->
+                                        <tr>
+                                            <th>Username:</th>
+                                            <td>{{ logInForm.username}}</td>
+                                        </tr>
+                                        <tr>
+                                            <th>Password:</th>
+                                            <td>{{ logInForm.password}}</td>
+                                        </tr>
+                                    </table>
                                 </div>
                                 <div class="modal-footer">
                                     <input class='btn' type="submit" value="Sign In">
@@ -106,16 +120,45 @@
             <div class="col-md-12">
                  <div class="modal fade" id="signUpModal">
                      <div class="modal-dialog modal-dialog-centered">
-                         <div class="modal-content">
+                         <div id="signup-modal-content" class="modal-content">
                              <div class="modal-header">
                                  <h1>Sign Up</h1>
                              </div>
                             <form action="{% url 'signup' %}" method="POST">
                                 <div class="modal-body">
+                                    {% csrf_token %}
                                     <table>
-                                        {% csrf_token %}
-                                        {{ profileForm.as_table }}
-                                        {{ signUpForm.as_table }}
+                                        {% for field in profileForm %}
+                                            <tr>
+                                                <th>{{field.label_tag}}</th>
+                                                <td>{{field}}</td>
+                                            </tr>
+                                        {% endfor %}
+        
+                                        {% for field in signUpForm %}
+                                            <tr>
+                                                <th>{{field.label_tag}}</th>
+                                                <td>
+                                                    {{field}}
+                                                    {% if field.help_text %}
+                                                        <p class="signup-help">
+                                                            {{field.help_text}}
+                                                        </p>
+                                                    {% endif %}
+                                                </td>
+                                            </tr>
+                                        {% endfor %}
+
+                                        {% if signUpForm.errors %}
+                                        <tr>
+                                            <td colspan="2">
+                                                <p id="signup-errors" hidden>Errors:</p>
+                                                {{signUpForm.errors}}
+                                            </td>
+                                        </tr>
+                                        {% endif %}
+                                        <!-- {{ signUpForm.as_table }} -->
+                                        <!-- {{ profileForm.as_table }} -->
                                     </table>
                                 </div>
                                 <div class="modal-footer">
@@ -131,12 +174,4 @@
     {% block content %}
     {% endblock %}
 </body>
-{% if profileForm.errors %}
-<script type='text/javascript' defer>
-    $(window).on('load', function(){
-        $('.modal').removeAttr('display', 'none');
-        $('.modal').attr('display', 'block');
-    });
-</script>
-{% endif %}
 </html>

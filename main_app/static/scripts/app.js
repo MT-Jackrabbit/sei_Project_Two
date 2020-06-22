@@ -1,5 +1,16 @@
 console.log('The app.js loaded correctly');
 
+$(document).ready(() => {
+    const errLogin = $('#login-errors').text();
+    const errSignup = $('#signup-errors').text();
+
+    if(errLogin === 'Errors:')
+        $('#logInModal').modal('show');
+    else if(errSignup === 'Errors:')
+        $('#signUpModal').modal('show');
+
+});
+
 $('#a__login').mouseenter(() => {
     $('#login-txt').css('opacity', '1');
 });
