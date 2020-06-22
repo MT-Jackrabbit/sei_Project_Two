@@ -46,7 +46,7 @@
                     </div>
                     <div class="div__update-btns">
                         <a href="{% url 'del_post' post.id %}">
-                            <button id="btn__post-delete" type="button" class="btn btn-outline-dark btn-sm mt-3 mx-1">Delete</button>
+                            <button id="btn__post-delete-{{post.id}}" type="button" class="btn btn-outline-dark btn-sm mt-3 mx-1">Delete</button>
                         </a>
                         <a href="#" data-toggle="modal" data-target="#update{{ post.id }}Modal">
                             <button id="btn__post-update" class="btn btn-outline-dark btn-sm mt-3 mx-1">Update</button>
