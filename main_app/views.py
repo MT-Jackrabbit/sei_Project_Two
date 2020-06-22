@@ -1,6 +1,6 @@
 from django.shortcuts import render, redirect
 from django.http import HttpResponse
-from django.contrib.auth import login
+from django.contrib.auth import login, authenticate
 from django.contrib.auth.forms import UserCreationForm, AuthenticationForm
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import User
@@ -16,7 +16,11 @@ def home(req):
 def on_login(req):
     form = AuthenticationForm(data = req.POST)
     if form.is_valid():
-        profile = UserProfile.objects.get(user=req.user.id)
+        username = req.POST.get('username')
+        password = req.POST.get('password')
+        user = authenticate(username=username, password=password)
+        login(req, user)
+        profile = UserProfile.objects.get(user=user.id)
         return redirect('profile', profile.id)
     else:
         context = {'logInForm': form, 'signUpForm': UserCreationForm(), 'profileForm': Profile_Form(), 'errors': form.errors}
@@ -25,6 +29,7 @@ def on_login(req):
 # --- user_profile route --- #
 def user_profile(req, user_id):
     profile = UserProfile.objects.get(id=user_id)
+    print(f"Profile return = {profile}")
     
     if(req.GET.get("sort") == 'asc'):
         posts = Post.objects.filter(author=user_id).order_by( '-city__name')
@@ -32,7 +37,7 @@ def user_profile(req, user_id):
         posts = Post.objects.filter(author=user_id).order_by('city__name')
     else:
         posts = Post.objects.filter(author=user_id)
-    
+
     form = Profile_Form(instance=profile)
     return render(req, 'user/profile.html', {'profile': profile, 'posts': posts, 'form': form})
 
@@ -74,7 +79,15 @@ def del_post(req, post_id):
 
 # --- edit_post route --- #
 def edit_post(req, post_id):
-    return HttpResponse(f"Editing post id={post_id}")
+    print(req.POST)
+    city = City.objects.get(id = req.POST['city'])
+    user = User.objects.get(id = req.POST['user'])
+    profile = UserProfile.objects.get(user_id = req.POST['user'])
+    post= Post.objects.get(id = post_id)
+    post_form = Post(req.POST, instance = post)
+    if req.method == 'POST':
+        post_form.save()
+        return redirect('cities', user_id = user.id, city_id = city.id)
 
 # --- city_posts route --- #
 def city_posts(req, user_id, city_id):

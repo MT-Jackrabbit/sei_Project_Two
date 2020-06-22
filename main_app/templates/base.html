@@ -17,65 +17,9 @@
     <title>Wayfarer</title>
 </head>
 <body>
-    <!-- Login Modal -->
-    <div class="container" id="logIn">
-        <div class="row">
-            <div class="col-md-12">
-                 <div class="modal fade" id="logInModal">
-                     <div class="modal-dialog show modal-dialog-centered">
-                         <div class="modal-content">
-                             <div class="modal-header">
-                                 <h1>Log In</h1>
-                             </div>
-                             <form action="{% url 'on_login'%}" method="POST">
-                                <div class="modal-body">
-                                    {% csrf_token %}
-                                    {% if logInForm.errors %}
-                                        {{ logInForm.as_p }}
-                                    {% else %}
-                                        {{ logInForm.as_p }}
-                                    {% endif %}
-                                </div>
-                                <div class="modal-footer">
-                                    <input class='btn' type="submit" value="Sign In">
-                                    <input type="hidden" name="next" value={{next}}>
-                                </div>
-                            </form>
-                         </div>
-                     </div>
-                 </div>
-            </div>
-        </div>
-    </div>
-    <!-- Sign Up Modal -->
-    <div class="container" id="signUp">
-        <div class="row">
-            <div class="col-md-12">
-                 <div class="modal fade" id="signUpModal">
-                     <div class="modal-dialog modal-dialog-centered">
-                         <div class="modal-content">
-                             <div class="modal-header">
-                                 <h1>Sign Up</h1>
-                             </div>
-                            <form action="{% url 'signup' %}" method="POST">
-                                <div class="modal-body">
-                                    <table>
-                                        {% csrf_token %}
-                                        {{ profileForm.as_table }}
-                                        {{ signUpForm.as_table }}
-                                    </table>
-                                </div>
-                                <div class="modal-footer">
-                                    <input class='btn' type="submit" value='Sign Up'>
-                                </div>
-                            </form>
-                         </div>
-                     </div>
-                 </div>
-            </div>
-        </div>
-    </div>
+
     <!-- Nav Bar  -->
+
     <nav class="navbar navbar-light bg-light">
         <div class="col-6">
             <a class="h1" href="/">Wayfarer</a>
@@ -122,6 +66,68 @@
             {% endif %}
         </div>
     </nav>
+
+     <!-- Login Modal -->
+     
+     <div class="container" id="logIn">
+        <div class="row">
+            <div class="col-md-12">
+                 <div class="modal fade" id="logInModal">
+                     <div class="modal-dialog show modal-dialog-centered">
+                         <div class="modal-content">
+                             <div class="modal-header">
+                                 <h1>Log In</h1>
+                             </div>
+                             <form action="{% url 'on_login'%}" method="POST">
+                                <div class="modal-body">
+                                    {% csrf_token %}
+                                    {% if logInForm.errors %}
+                                        {{ logInForm.as_p }}
+                                    {% else %}
+                                        {{ logInForm.as_p }}
+                                    {% endif %}
+                                </div>
+                                <div class="modal-footer">
+                                    <input class='btn' type="submit" value="Sign In">
+                                    <input type="hidden" name="next" value={{next}}>
+                                </div>
+                            </form>
+                         </div>
+                     </div>
+                 </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Sign Up Modal -->
+
+    <div class="container" id="signUp">
+        <div class="row">
+            <div class="col-md-12">
+                 <div class="modal fade" id="signUpModal">
+                     <div class="modal-dialog modal-dialog-centered">
+                         <div class="modal-content">
+                             <div class="modal-header">
+                                 <h1>Sign Up</h1>
+                             </div>
+                            <form action="{% url 'signup' %}" method="POST">
+                                <div class="modal-body">
+                                    <table>
+                                        {% csrf_token %}
+                                        {{ profileForm.as_table }}
+                                        {{ signUpForm.as_table }}
+                                    </table>
+                                </div>
+                                <div class="modal-footer">
+                                    <input class='btn' type="submit" value='Sign Up'>
+                                </div>
+                            </form>
+                         </div>
+                     </div>
+                 </div>
+            </div>
+        </div>
+    </div>
     {% block content %}
     {% endblock %}
 </body>
