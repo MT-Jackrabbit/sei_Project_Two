@@ -12,9 +12,16 @@
 
 <article class="article__cities">
     <section class="section__cities">
+        <div id="div__h4-cities">
+            <h4 id="h4__cities">Cities</h4>
+        </div>
         {% for city in cities %}
             <a href="{% url 'cities' city.id %}">
-                <h3>{{city.name}}</h3>
+
+                <button type="button" class="btn btn-outline-dark btn-sm mx-1 city-btn">
+                    <img class="img_city-thumb" src="{{city.img}}" alt="{{city.name}} Pic">
+                    {{city.name}}
+                </button>
             </a>
         {% endfor %}
     </section>
@@ -23,12 +30,16 @@
             <h1>{{city.name}}</h1>
             <img id="img_city-pic" src="{{city.img}}" alt="{{city.name}} Pic">
         </div>
-        <div>
-            <h4>Posts</h4>
-
+        <div id="div_add-post">
+            <h3>Posts</h3>
             <!-- Toggles add post modal open -->
-
-            <a href="#" data-toggle="modal" data-target="#createCityModal">Add Post +</a>
+            <a href="#" data-toggle="modal" data-target="#createCityModal">
+                <svg class="bi bi-plus-circle" width="35px" height="35px" viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                    <path fill-rule="evenodd" d="M8 3.5a.5.5 0 0 1 .5.5v4a.5.5 0 0 1-.5.5H4a.5.5 0 0 1 0-1h3.5V4a.5.5 0 0 1 .5-.5z"/>
+                    <path fill-rule="evenodd" d="M7.5 8a.5.5 0 0 1 .5-.5h4a.5.5 0 0 1 0 1H8.5V12a.5.5 0 0 1-1 0V8z"/>
+                    <path fill-rule="evenodd" d="M8 15A7 7 0 1 0 8 1a7 7 0 0 0 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"/>
+                </svg>
+            </a>
         </div>
 
         <!-- Lists all posts with personalized update Modal -->
@@ -46,7 +57,7 @@
                     </div>
                     <div class="div__update-btns">
                         <a href="{% url 'del_post' post.id %}">
-                            <button id="btn__post-delete-{{post.id}}" type="button" class="btn btn-outline-dark btn-sm mt-3 mx-1">Delete</button>
+                            <button id="btn__post-delete" type="button" class="btn btn-outline-dark btn-sm mt-3 mx-1">Delete</button>
                         </a>
                         <a href="#" data-toggle="modal" data-target="#update{{ post.id }}Modal">
                             <button id="btn__post-update" class="btn btn-outline-dark btn-sm mt-3 mx-1">Update</button>
