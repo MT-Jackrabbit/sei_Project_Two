@@ -64,7 +64,7 @@
                              <div class="modal-dialog show modal-dialog-centered">
                                 <div class="modal-content">
                                     <div class="row d-flex justify-content-center">
-                                        <div class="col-sm-8">
+                                        <div class="col-sm-9">
                                             <div class="modal-header">
                                                 <h1>Update post</h1>
                                             </div>
@@ -87,7 +87,10 @@
                                                     <input type="hidden" name="user" value="{{ user.id }}">
                                                 </div>
                                                 <div class="modal-footer">
-                                                    <input class='btn' type="submit" value="Submit">
+                                                    <a href="#" data-toggle= "modal" data-target="#update{{ post.id }}Modal">
+                                                        <button id="btn__cancel-update" class="btn btn-outline-dark btn-sm mt-3 mx-1">Cancel</button>
+                                                    </a>
+                                                    <button id="btn__confirm-update" class="btn btn-outline-dark btn-sm mt-3 mx-1" type="submit">Submit</button>
                                                 </div>
                                             </form>
                                         </div>
@@ -168,7 +171,10 @@
                                  <input type="hidden" id="authorId" name="authorId" value="{{ city.id }}">
                             </div>
                             <div class="modal-footer">
-                                <input class='btn' type="submit" value="Submit">
+                                <a href="#" data-toggle= "modal" data-target="#createCityModal">
+                                    <button id="btn__cancel-post" class="btn btn-outline-dark btn-sm">Cancel</button>
+                                </a>
+                                <button id="btn__confirm-post" class="btn btn-outline-dark btn-sm" type="submit">Submit</button>
                             </div>
                         </form>
                      </div>
