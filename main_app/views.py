@@ -77,7 +77,7 @@ def edit_post(req, post_id):
     user = User.objects.get(id = req.POST['user'])
     profile = UserProfile.objects.get(user_id = req.POST['user'])
     post= Post.objects.get(id = post_id)
-    post_form = Post(req.POST, instance = post)
+    post_form = Post_Form(req.POST, instance = post)
     if req.method == 'POST':
         post_form.save()
         return redirect('cities', user_id = user.id, city_id = city.id)
