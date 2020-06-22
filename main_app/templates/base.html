@@ -6,7 +6,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
-    <link rel="stylesheet" href="{% static 'styles/main.css' %}">
+    <link rel="stylesheet" href="{% static '/styles/main.css' %}">
     {% block sylesheets %} {% endblock %}
 <!-- JS, Popper.js, and jQuery -->
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous" defer></script>
@@ -27,7 +27,7 @@
                              <div class="modal-header">
                                  <h1>Log In</h1>
                              </div>
-                             <form action="{% url 'login'%}" method="POST">
+                             <form action="{% url 'on_login'%}" method="POST">
                                 <div class="modal-body">
                                     {% csrf_token %}
                                     {% if logInForm.errors %}
@@ -57,7 +57,7 @@
                              <div class="modal-header">
                                  <h1>Sign Up</h1>
                              </div>
-                             <form action="{% url 'signup' %}" method="POST">
+                            <form action="{% url 'signup' %}" method="POST">
                                 <div class="modal-body">
                                     <table>
                                         {% csrf_token %}
@@ -149,17 +149,11 @@
     {% block content %}
     {% endblock %}
 </body>
-{% if errors %}
+{% if profileForm.errors %}
 <script type='text/javascript' defer>
     $(window).on('load', function(){
-        $('#logInModal').modal('show');
-    });
-</script>
-{% endif %}
-{% if errors %}
-<script type='text/javascript' defer>
-    $(window).on('load', function(){
-        $('#signUpModal').modal('show');
+        $('.modal').removeAttr('display', 'none');
+        $('.modal').attr('display', 'block');
     });
 </script>
 {% endif %}
