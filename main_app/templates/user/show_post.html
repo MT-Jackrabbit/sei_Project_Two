@@ -3,17 +3,24 @@
 {% block sylesheets %}
     <link rel="stylesheet" href="{% static 'styles/show_post.css' %}">
 {% endblock %}
+{% block scripts %}
+    <script src="{% static 'scripts/show_post.js' %}" defer></script>
+{% endblock %}
 {% block content %}
 <section id="section__post-content">
     <div class="card bg-light mb-3 post-card">
         <div class="card-header">{{ post.title }}</div>
         <div class="card-body">
             <h5 class="card-title">{{ post.author }}, {{ post.city }}</h5>
-            <p class="card-text">{{ post.content }}</p>
+            <div class="more">
+                <p class="card-text content-text">{{ post.content }}</p>
+                <u><p id="more_text">Show more</p></u>
             </div>
-        </div>
-        <div id="div__btn-back">
-            <button class="btn btn-outline-dark btn-sm mt-3 mx-1" id="btn-back" onclick="history.back()">Back</button>
+            </div>
+            <div id="div__btn-back">
+                <!-- this will bring user to previous page -->
+                <button class="btn btn-outline-dark btn-sm mt-3 mx-1" id="btn-back" onclick="history.back()">Back</button>
+            </div>
         </div>
     </div>
 </section>
