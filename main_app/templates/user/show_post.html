@@ -12,9 +12,13 @@
         <div class="card-header">{{ post.title }}</div>
         <div class="card-body">
             <h5 class="card-title">{{ post.author }}, {{ post.city }}</h5>
-            <p class="card-text less">{{ post.content }}</p>
+            <div class="more">
+                <p class="card-text content-text">{{ post.content }}</p>
+                <u><p id="more_text">Show more</p></u>
+            </div>
             </div>
             <div id="div__btn-back">
+                <!-- this will bring user to previous page -->
                 <button class="btn btn-outline-dark btn-sm mt-3 mx-1" id="btn-back" onclick="history.back()">Back</button>
             </div>
         </div>
