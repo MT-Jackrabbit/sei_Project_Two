@@ -33,12 +33,3 @@
     display: flex;
     justify-content: flex-end;
 }
-
-.less {
-    color: rgba(0,0,0,.6);
-    /* white-space: nowrap; */
-    white-space: wrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    max-width: 150ch;
-}

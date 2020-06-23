@@ -101,7 +101,12 @@ def city_posts(req, city_id):
     post_form = Post_Form(data ={'city': city_id})
     cities = City.objects.all().order_by('name')
     city = City.objects.get(id=city_id)
-    posts = Post.objects.filter(city_id=city_id).order_by('-created_on')
+
+    if(req.GET.get("sort") == 'desc'):
+        posts = Post.objects.filter(city_id=city_id).order_by('created_on')
+    else:#(req.GET.get("sort") == 'asc'):
+        posts = Post.objects.filter(city_id=city_id).order_by('-created_on')
+    
     if req.user.id:
         profile = UserProfile.objects.get(user_id=req.user.id)
         return render(req, 'cities/city_profile.html', {'city': city, 'cities': cities, 'posts': posts, 'postForm': post_form, 'profile': profile})

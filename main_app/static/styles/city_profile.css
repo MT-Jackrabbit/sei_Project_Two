@@ -95,6 +95,11 @@
     margin: 10px 0;
 }
 
+.sort-controls {
+    display: flex;
+    align-items: flex-end;
+}
+
 
 #title, #id_title, #content, #id_content {
     width: 300px;
