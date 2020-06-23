@@ -16,19 +16,19 @@
             <p id="member-since" class="p__user-profile">Member since: {{ profile.joined_on }}</p>
             <!-- if the user is authenticated and the user signed in is viewing their own profile -->
             {% if user.is_authenticated and user.id == profile.user_id %}
-            <button id="btn__show-update" type="button" class="btn btn-outline-dark btn-sm mt-3">Change</button>
-            <div id="update-form" class="update-form mt-5">
-                <form action="{% url 'edit' profile.id %}" method="post">
-                    <table>
-                        {% csrf_token %}
-                        {{form.as_table}}
-                    </table>
-                    <div class="div__update-btns">
-                        <button id="btn__cancel-update" type="button" class="btn btn-outline-dark btn-sm mt-3 mx-1">Cancel</button>
-                        <button id="btn__user-update" type="submit" class="btn btn-outline-dark btn-sm mt-3 mx-1">Update</button>
-                    </div>
-                </form>
-            </div>
+                <button id="btn__show-update" type="button" class="btn btn-outline-dark btn-sm mt-3">Change</button>
+                <div id="update-form" class="update-form mt-5">
+                    <form action="{% url 'edit' profile.id %}" method="post">
+                        <table>
+                            {% csrf_token %}
+                            {{form.as_table}}
+                        </table>
+                        <div class="div__update-btns">
+                            <button id="btn__cancel-update" type="button" class="btn btn-outline-dark btn-sm mt-3 mx-1">Cancel</button>
+                            <button id="btn__user-update" type="submit" class="btn btn-outline-dark btn-sm mt-3 mx-1">Update</button>
+                        </div>
+                    </form>
+                </div>
             {% endif %}
         </section>
         <section class="section__post-titles">

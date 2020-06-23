@@ -27,6 +27,7 @@ def on_login(req):
         return render(req, 'home.html', context )
 
 # --- user_profile route --- #
+@login_required(login_url='home')
 def user_profile(req, profile_id):
     profile = UserProfile.objects.get(id=profile_id)
     print(f"Profile return = {profile}")
@@ -57,6 +58,7 @@ def user_edit(req, profile_id):
     return render(req, 'user/profile.html', {'profile': profile, 'form': form})
 
 # --- show_post route --- #
+@login_required(login_url='home')
 def show_post(req, post_id):
     post = Post.objects.get(id=post_id)
     context = {'post': post}
@@ -97,6 +99,7 @@ def edit_post(req, post_id):
         return redirect('home')
 
 # --- city_posts route --- #
+@login_required(login_url='home')
 def city_posts(req, city_id):
     post_form = Post_Form(data ={'city': city_id})
     cities = City.objects.all().order_by('name')
