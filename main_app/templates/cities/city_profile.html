@@ -32,29 +32,49 @@
         </div>
         <div id="div_add-post">
             <h3>Posts</h3>
-            <!-- Toggles add post modal open -->
-            <a href="#" data-toggle="modal" data-target="#createCityModal">
-                <svg class="bi bi-plus-circle" width="35px" height="35px" viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-                    <path fill-rule="evenodd" d="M8 3.5a.5.5 0 0 1 .5.5v4a.5.5 0 0 1-.5.5H4a.5.5 0 0 1 0-1h3.5V4a.5.5 0 0 1 .5-.5z"/>
-                    <path fill-rule="evenodd" d="M7.5 8a.5.5 0 0 1 .5-.5h4a.5.5 0 0 1 0 1H8.5V12a.5.5 0 0 1-1 0V8z"/>
-                    <path fill-rule="evenodd" d="M8 15A7 7 0 1 0 8 1a7 7 0 0 0 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"/>
-                </svg>
-            </a>
+            <div class="sort-controls">
+                <!-- Sorts Posts in decending order -->
+                <a href="{% url 'cities' city.id %}?sort=desc">
+                    <svg id="sort-desc" class="bi bi-caret-down" width="25px" height="25px" viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                        <path fill-rule="evenodd" d="M3.204 5L8 10.481 12.796 5H3.204zm-.753.659l4.796 5.48a1 1 0 0 0 1.506 0l4.796-5.48c.566-.647.106-1.659-.753-1.659H3.204a1 1 0 0 0-.753 1.659z"/>
+                    </svg>
+                </a>
+                <!-- Sorts posts in ascending order -->
+                <a href="{% url 'cities' city.id %}?sort=asc">
+                    <svg id="sort-asc" class="bi bi-caret-up" width="25px" height="25px" viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                        <path fill-rule="evenodd" d="M3.204 11L8 5.519 12.796 11H3.204zm-.753-.659l4.796-5.48a1 1 0 0 1 1.506 0l4.796 5.48c.566.647.106 1.659-.753 1.659H3.204a1 1 0 0 1-.753-1.659z"/>
+                    </svg>
+                </a>
+            </div>
+            {% if user.is_authenticated %}
+                <!-- Toggles add post modal open -->
+                <a href="#" data-toggle="modal" data-target="#createCityModal">
+                    <svg id="add-icon" class="bi bi-plus-circle-fill" width="35px" height="35px" viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                        <path fill-rule="evenodd" d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zM8.5 4a.5.5 0 0 0-1 0v3.5H4a.5.5 0 0 0 0 1h3.5V12a.5.5 0 0 0 1 0V8.5H12a.5.5 0 0 0 0-1H8.5V4z"/>
+                    </svg>
+                </a>
+            {% endif %}
         </div>
 
         <!-- Lists all posts with personalized update Modal -->
-
         {% for post in posts %}
-            <!-- <a href="/user/{{ post.id }}/show_post"> -->
-            <a href="{% url 'show_post' post.id %}">
-                <div class="card bg-light mb-3 post-card">
+            <div class="card bg-light mb-3 post-card">
+                <a href="{% url 'show_post' post.id %}">
                     <div class="card-header">
                         <h5 class="card-title">{{ post.title }}</h5>
+                        <p>{{post.Time_Since}}</p>
+                     </div>
+                </a>
+                <div class="card-body">
+                    <div class="card__city-author">
+                        <h6 class="card-title">{{ post.city }}</h6>
+                        <a href="{% url 'profile' post.author_id %}">
+                            <h6>Author: <u>{{post.author}}</u></h6>
+                        </a>
                     </div>
-                    <div class="card-body">
-                    <h6 class="card-title">{{ post.city }}</h6>
                     <p class="card-text my-p-class">{{ post.content }}</p>
-                    </div>
+                </div>
+                {% if user.is_authenticated and post.author_id == profile.id %}
                     <div class="div__update-btns">
                         <a href="#" data-toggle="modal" data-target="#delete{{ post.id }}Modal">
                             <button id="btn__post-delete" type="button" class="btn btn-outline-dark btn-sm mt-3 mx-1">Delete</button>
@@ -63,11 +83,10 @@
                             <button id="btn__post-update" class="btn btn-outline-dark btn-sm mt-3 mx-1">Update</button>
                         </a>
                     </div>
-                </div>
-            </a>
+                {% endif %}
+            </div>
 
             <!-- Update Modal -->
-
             <div class="container" id="updateCity">
                 <div class="row">
                     <div class="col-md-12">

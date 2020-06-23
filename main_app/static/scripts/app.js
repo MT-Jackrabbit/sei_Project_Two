@@ -11,6 +11,16 @@ $(document).ready(() => {
 
 });
 
+$('#id_name').blur(() => {
+    const name = $('#id_name').val();
+    $('#id_name').val($.trim(name));
+});
+
+$('#id_username').blur(() => {
+    const username = $('#id_username').val();
+    $('#id_username').val($.trim(username));
+});
+
 $('#a__login').mouseenter(() => {
     $('#login-txt').css('opacity', '1');
 });
