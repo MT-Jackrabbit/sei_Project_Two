@@ -31,7 +31,13 @@
 
 #div__btn-back {
     display: flex;
-    justify-content: flex-end;
+    justify-content: space-between;
+}
+
+#div__btn-back p {
+    margin: 0 0 4px 20px;
+    justify-self: flex-end;
+    align-self: flex-end;
 }
 
 #more_text:hover {

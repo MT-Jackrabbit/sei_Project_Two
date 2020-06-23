@@ -51,6 +51,19 @@ label {
     justify-content: space-between;
 }
 
+.card-header {
+    display: flex;
+    justify-content: space-between;
+}
+
+.card-header p {
+    font-size: 12px;
+    margin: 0;
+    padding: 0;
+    align-self: flex-end;
+    justify-self: flex-end;
+}
+
 .sort-controls {
     display: flex;
     align-items: flex-end;

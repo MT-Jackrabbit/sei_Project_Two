@@ -62,7 +62,8 @@
                 <a href="{% url 'show_post' post.id %}">
                     <div class="card-header">
                         <h5 class="card-title">{{ post.title }}</h5>
-                    </div>
+                        <p>{{post.Time_Since}}</p>
+                     </div>
                 </a>
                 <div class="card-body">
                     <div class="card__city-author">

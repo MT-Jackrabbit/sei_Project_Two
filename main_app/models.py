@@ -1,4 +1,5 @@
 from django.db import models
+from django.utils.timesince import timesince
 
 from django.contrib.auth.models import User
 
@@ -31,3 +32,6 @@ class Post(models.Model):
 
     def __str__(self):
         return self.title
+
+    def Time_Since(self):
+        return f"Published: {timesince(self.created_on)} ago"

@@ -55,6 +55,7 @@
                     <div class="card bg-light mb-3 post-card">
                         <div class="card-header">
                            <h5 class="card-title">{{ post.title }}</h5>
+                           <p>{{post.Time_Since}}</p>
                         </div>
                         <div class="card-body">
                         <a href="{% url 'cities' post.city_id %}">
