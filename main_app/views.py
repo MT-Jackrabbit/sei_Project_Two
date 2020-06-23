@@ -27,33 +27,34 @@ def on_login(req):
         return render(req, 'home.html', context )
 
 # --- user_profile route --- #
-def user_profile(req, user_id):
-    profile = UserProfile.objects.get(id=user_id)
+def user_profile(req, profile_id):
+    profile = UserProfile.objects.get(id=profile_id)
     print(f"Profile return = {profile}")
     
     if(req.GET.get("sort") == 'asc'):
-        posts = Post.objects.filter(author=user_id).order_by( '-city__name')
+        posts = Post.objects.filter(author=profile_id).order_by( '-city__name')
     elif(req.GET.get("sort") == 'desc'):
-        posts = Post.objects.filter(author=user_id).order_by('city__name')
+        posts = Post.objects.filter(author=profile_id).order_by('city__name')
     else:
-        posts = Post.objects.filter(author=user_id)
+        posts = Post.objects.filter(author=profile_id)
 
     form = Profile_Form(instance=profile)
     return render(req, 'user/profile.html', {'profile': profile, 'posts': posts, 'form': form})
 
 # --- user_edit route --- #
-def user_edit(req, user_id):
-    user = UserProfile.objects.get(id=user_id)
+@login_required(login_url='home')
+def user_edit(req, profile_id):
+    profile = UserProfile.objects.get(id=profile_id)
     if req.method == "POST":
-        form = Profile_Form(req.POST, instance=user)
+        form = Profile_Form(req.POST, instance=profile)
         if form.is_valid():
             print(form)
             form.save()
-            return redirect('profile', user_id=user_id)
+            return redirect('profile', profile_id=profile_id)
     else:
-        form = Profile_Form(instance=user)
+        form = Profile_Form(instance=profile)
     
-    return render(req, 'user/profile.html', {'user': user, 'form': form})
+    return render(req, 'user/profile.html', {'profile': profile, 'form': form})
 
 # --- show_post route --- #
 def show_post(req, post_id):
@@ -62,6 +63,7 @@ def show_post(req, post_id):
     return render(req, 'user/show_post.html', context)
 
 # --- add_post route --- #
+@login_required(login_url='home')
 def add_post(req):
     if req.method == 'POST':
         city = City.objects.get(id = req.POST['cityId'])
@@ -74,11 +76,13 @@ def add_post(req):
         return redirect('home')
 
 # --- del_post route --- #
+@login_required(login_url='home')
 def del_post(req, post_id):
     Post.objects.get(id=post_id).delete()
     return redirect('cities', req.POST['del_city'])
 
 # --- edit_post route --- #
+@login_required(login_url='home')
 def edit_post(req, post_id):
     print(req.POST)
     if req.method == 'POST':
@@ -98,8 +102,11 @@ def city_posts(req, city_id):
     cities = City.objects.all().order_by('name')
     city = City.objects.get(id=city_id)
     posts = Post.objects.filter(city_id=city_id).order_by('-created_on')
-    return render(req, 'cities/city_profile.html', {'city': city, 'cities': cities, 'posts': posts, 'postForm': post_form})
-
+    if req.user.id:
+        profile = UserProfile.objects.get(user_id=req.user.id)
+        return render(req, 'cities/city_profile.html', {'city': city, 'cities': cities, 'posts': posts, 'postForm': post_form, 'profile': profile})
+    else:
+        return render(req, 'cities/city_profile.html', {'city': city, 'cities': cities, 'posts': posts, 'postForm': post_form})
 
 ######## Admin Routes ########
 
@@ -120,7 +127,7 @@ def sign_up(req):
             profile = UserProfile.objects.get(user=user.id)
             return redirect('profile', profile.id)
         else:
-            context = {'signUpForm': user_form, 'profileForm': profile_form, 'errors': user_form.errors}
+            context = {'logInForm': AuthenticationForm(), 'signUpForm': user_form, 'profileForm': profile_form, 'errors': user_form.errors}
             print(context)
             return render(req, 'home.html', context )
 

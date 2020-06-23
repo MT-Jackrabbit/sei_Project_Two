@@ -31,6 +31,14 @@
     margin-right: 5px;
 }
 
+#add-icon {
+    color: lightgrey;
+}
+
+#add-icon:hover {
+    color: red;
+}
+
 #div_add-post {
     display: flex;
     justify-content: space-between;
@@ -55,6 +63,11 @@
     width:60%;
     height: 100vh;
     padding-left: 20px;
+}
+
+.card__city-author {
+    display: flex;
+    justify-content: space-between;
 }
 
 .div__update-btns {
