@@ -19,10 +19,13 @@
 <body>
 
     <!-- Nav Bar  -->
-
     <nav class="navbar navbar-light bg-light">
         <div class="col-6">
-            <a class="h1" href="{% url 'cities' 1 %}">Wayfarer</a>
+            {% if user.is_authenticated %}
+                <a class="h1" href="{% url 'cities' user.userprofile.city_id %}">Wayfarer</a>
+            {% else %}
+                <a class="h1" href="{% url 'home' %}">Wayfarer</a>
+            {% endif %}
         </div>
         <div class="col-6 d-flex justify-content-end" id="navbarNav">
             {% if user.is_authenticated %}
@@ -36,7 +39,7 @@
                 <p id="logout-txt">Logout</p>
             </div>
             <div id="div__profile-icon">
-                <a id="a__profile" class="nav-link" href="{% url 'profile' request.user.id %}">
+                <a id="a__profile" class="nav-link" href="{% url 'profile' request.user.userprofile.id %}">
                     <svg class="bi bi-person" width="25px" height="25px" viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
                         <path fill-rule="evenodd" d="M13 14s1 0 1-1-1-4-6-4-6 3-6 4 1 1 1 1h10zm-9.995-.944v-.002.002zM3.022 13h9.956a.274.274 0 0 0 .014-.002l.008-.002c-.001-.246-.154-.986-.832-1.664C11.516 10.68 10.289 10 8 10c-2.29 0-3.516.68-4.168 1.332-.678.678-.83 1.418-.832 1.664a1.05 1.05 0 0 0 .022.004zm9.974.056v-.002.002zM8 7a2 2 0 1 0 0-4 2 2 0 0 0 0 4zm3-2a3 3 0 1 1-6 0 3 3 0 0 1 6 0z"/>
                     </svg>
@@ -68,7 +71,6 @@
     </nav>
 
      <!-- Login Modal -->
-     
      <div class="container" id="logIn">
         <div class="row">
             <div class="col-md-12">
@@ -90,7 +92,6 @@
                                             </td>
                                         </tr>
                                         {% endif %}
-                                    <!-- {{ logInForm.as_p }} -->
                                         <tr>
                                             <th>Username:</th>
                                             <td>{{ logInForm.username}}</td>
@@ -114,7 +115,6 @@
     </div>
 
     <!-- Sign Up Modal -->
-
     <div class="container" id="signUp">
         <div class="row">
             <div class="col-md-12">
@@ -159,8 +159,6 @@
                                             </td>
                                         </tr>
                                         {% endif %}
-                                        <!-- {{ signUpForm.as_table }} -->
-                                        <!-- {{ profileForm.as_table }} -->
                                     </table>
                                 </div>
                                 <div class="modal-footer">

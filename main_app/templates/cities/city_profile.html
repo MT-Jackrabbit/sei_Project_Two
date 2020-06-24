@@ -19,7 +19,7 @@
             <a href="{% url 'cities' city.id %}">
 
                 <button type="button" class="btn btn-outline-dark btn-sm mx-1 city-btn">
-                    <img class="img_city-thumb" src="{{city.img}}" alt="{{city.name}} Pic">
+                    <img class="img_city-thumb" src="{% static city.img %}" alt="{{city.name}} Pic">
                     {{city.name}}
                 </button>
             </a>
@@ -28,7 +28,7 @@
     <section class="section__post-titles">
         <div class="post-card-header">
             <h1>{{city.name}}</h1>
-            <img id="img_city-pic" src="{{city.img}}" alt="{{city.name}} Pic">
+            <img id="img_city-pic" src="{% static city.img %}" alt="{{city.name}} Pic">
         </div>
         <div id="div_add-post">
             <h3>Posts</h3>
@@ -109,7 +109,7 @@
                                                 </div>
                                                 <div class="row">
                                                     <div class="col">
-                                                        <textarea name="content" id="content" cols="40" rows="10">{{ post.content }}</textarea>
+                                                        <textarea name="content" id="content" cols="40" rows="10" maxlength="3000">{{ post.content }}</textarea>
                                                     </div>
                                                 </div>
                                                     <input type="hidden" name="author" id = "author" value="{{ post.author }}">
@@ -120,7 +120,7 @@
                                                     <a href="#" data-toggle= "modal" data-target="#update{{ post.id }}Modal">
                                                         <button id="btn__cancel-update" class="btn btn-outline-dark btn-sm mt-3 mx-1">Cancel</button>
                                                     </a>
-                                                    <button id="btn__confirm-update" class="btn btn-outline-dark btn-sm mt-3 mx-1" type="submit">Submit</button>
+                                                    <button id="btn__confirm-update" class="btn btn-outline-dark btn-sm mt-3 mx-1" type="submit">Update</button>
                                                 </div>
                                             </form>
                                         </div>
@@ -138,10 +138,6 @@
                         <div class="modal fade" id="delete{{ post.id }}Modal">
                             <div class="modal-dialog modal-dialog-confirm modal-dialog-centered">
                                 <div class="modal-content">
-                                    <!-- <div class="modal-header">
-                                        <h4>Are you sure you want to delete {{ post.title }}?</h4>
-                                    </div> -->
-                                        
                                     <div class="modal-body">
                                         <h4>Are you sure you want to delete "{{ post.title }}"?</h4>
                                         <form action=" {% url 'del_post' post.id %}" method="POST">
@@ -204,9 +200,9 @@
                             </div>
                             <div class="modal-footer">
                                 <a href="#" data-toggle= "modal" data-target="#createCityModal">
-                                    <button id="btn__cancel-post" class="btn btn-outline-dark btn-sm">Cancel</button>
+                                    <button id="btn__cancel-post" class="btn btn-outline-dark btn-sm mt-3 mx-1">Cancel</button>
                                 </a>
-                                <button id="btn__confirm-post" class="btn btn-outline-dark btn-sm" type="submit">Submit</button>
+                                <button id="btn__confirm-post" class="btn btn-outline-dark btn-sm mt-3 mx-1" type="submit">Add Post</button>
                             </div>
                         </form>
                      </div>

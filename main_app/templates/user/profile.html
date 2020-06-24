@@ -10,10 +10,10 @@
     <!-- Sidebar with profile information -->
     <article class="article__user">
         <section class="section__profile">
-            {% if user.userprofile.imageURL %}
-            <img class="profile-img mt-3" src="{{ user.userprofile.imageURL.url }}" alt="profile pic">
+            {% if profile.imageURL %}
+            <img class="profile-img mt-3" src="{{ profile.imageURL.url }}" alt="profile pic">
             {% else %}
-            <img class="profile-img mt-3" src="{% static 'default_img.jpg' %}" alt="profile pic">
+            <img class="profile-img mt-3" src="{% static 'images/default_img.jpg' %}" alt="profile pic">
         
             {% endif %}
             <p id="user-name" class="p__user-profile">{{ profile.name }}</p>
@@ -32,7 +32,7 @@
                         </div>
                         <div class="row form-row">
                             <div class="col">
-                                {{form.city}}
+                                {{form.city}} 
                             </div>
                         </div>
                         <div class="row form-row">
@@ -78,7 +78,7 @@
                         <a href="{% url 'cities' post.city_id %}">
                             <h6 class="card-title"><u>{{ post.city }}</u></h6>
                         </a>
-                        <p class="card-text my-p-class">{{ post.content }}</p>
+                        <p class="card-text p__card">{{ post.content }}</p>
                         </div>
                     </div>
                 </a>

@@ -8,7 +8,7 @@
     align-items: center;
     width: 25%;
     min-width: 250px;
-    height: 150vh;
+    min-height: 150vh;
     background-color: lightgray;
 }
 
@@ -60,7 +60,6 @@
 
 #div__h4-cities {
     display: flex;
-    /* justify-content: flex-start; */
     min-width: 230px;
 }
 #h4__cities {
@@ -74,7 +73,7 @@
 
 .section__post-titles {
     width:60%;
-    height: 100vh;
+    min-height: 100vh;
     padding-left: 20px;
 }
 
@@ -108,6 +107,10 @@
     margin: 10px 0;
 }
 
+.modal-footer>* {
+    margin: 0;
+}
+
 .sort-controls {
     display: flex;
     align-items: flex-end;
@@ -127,13 +130,4 @@
     background-color: lightgray;
     resize: none;
 }
-
-/* .sort-controls {
-    display: flex;
-    align-items: flex-end;
-}
-
-#sort-desc:hover, #sort-asc:hover {
-    cursor: pointer;
-} */
 

@@ -9,7 +9,14 @@ $(document).ready(() => {
     else if(errSignup === 'Errors:')
         $('#signUpModal').modal('show');
 
+    $('#content').attr('maxlength', '3000');
+
 });
+
+// $('#content').blur(() => {
+//     const text = $('#content').val();
+//     alert(text.length);
+// })
 
 $('#id_name').blur(() => {
     const name = $('#id_name').val();
