@@ -60,7 +60,6 @@
 
 #div__h4-cities {
     display: flex;
-    /* justify-content: flex-start; */
     min-width: 230px;
 }
 #h4__cities {
@@ -127,13 +126,4 @@
     background-color: lightgray;
     resize: none;
 }
-
-/* .sort-controls {
-    display: flex;
-    align-items: flex-end;
-}
-
-#sort-desc:hover, #sort-asc:hover {
-    cursor: pointer;
-} */
 

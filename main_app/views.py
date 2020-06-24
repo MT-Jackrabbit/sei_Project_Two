@@ -107,7 +107,7 @@ def city_posts(req, city_id):
 
     if(req.GET.get("sort") == 'desc'):
         posts = Post.objects.filter(city_id=city_id).order_by('created_on')
-    else:#(req.GET.get("sort") == 'asc'):
+    else:
         posts = Post.objects.filter(city_id=city_id).order_by('-created_on')
     
     if req.user.id:
