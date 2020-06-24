@@ -27,11 +27,11 @@
     </section>
     <section class="section__post-titles">
         <div class="post-card-header">
-            <h1>{{city.name}}</h1>
+            <h1 id="h1_city-name">{{city.name}}</h1>
             <img id="img_city-pic" src="{% static city.img %}" alt="{{city.name}} Pic">
         </div>
         <div id="div_add-post">
-            <h3>Posts</h3>
+            <h3 id="h3__posts-txt">Posts</h3>
             <div class="sort-controls">
                 <!-- Sorts Posts in decending order -->
                 <a href="{% url 'cities' city.id %}?sort=desc">

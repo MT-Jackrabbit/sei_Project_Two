@@ -108,3 +108,52 @@ td {
 #sort-desc:hover, #sort-asc:hover {
     cursor: pointer;
 }
+
+@media only screen and (max-width: 450px) {
+    .article__user {
+        display: flex;
+        flex-direction: column;
+    }
+
+    .section__profile {
+        display: flex;
+        flex-direction: row;
+        align-items: flex-start;
+        width: 100vw;
+        max-height: 150px;
+        min-height: 150px;
+        height: 150px;
+        background-color: lightgray;
+    }
+
+    .section__post-titles {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        width:100%;
+        min-height: 100vh;
+        padding: 0 10px;
+    }
+
+    .profile-img {
+        border-radius: 50%;
+        width: 75px;
+        height: 75px;
+        margin: 0 20px;
+    }
+
+    .profile__on-media {
+        display: flex;
+        flex-direction: column;
+    }
+
+    #update-form {
+        z-index: 2;
+        background-color: lightgrey;
+        padding-bottom: 10px;
+    }
+
+    .card {
+        width: 90%;
+    }
+}

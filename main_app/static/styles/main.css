@@ -115,3 +115,46 @@ th {
     flex-direction: column;
     justify-content: start;
 }
+
+@media screen {
+    #login-modal-content {
+        max-width: 275px;
+        min-width: 275px;
+    }
+    
+    #signup-modal-content {
+        max-width: 275px;
+        min-width: 275px;
+    }
+
+    #id_username, #id_password, #id_name, #id_password1, #id_password2,
+    #id_city, #title, #id_title {
+        width: 125px;
+        height: 24px;
+        padding-left: 3px;
+        margin-left: 2px;
+        border-radius: 5px;
+        outline-color: #7C8A99;
+        border: none;
+        background-color: lightgray;
+    }
+
+    .signup-help, .modal-content li{
+        font-size: x-small;
+        width: 125px;
+    }
+
+    .div__signup-icon {
+        display: flex;
+    }
+
+    .nav-link {
+        margin: 0 3px;
+        padding: 0;
+    }
+
+    .col-6 {
+        margin: 0;
+        padding: 0;
+    }
+}
