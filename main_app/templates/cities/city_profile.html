@@ -19,7 +19,7 @@
             <a href="{% url 'cities' city.id %}">
 
                 <button type="button" class="btn btn-outline-dark btn-sm mx-1 city-btn">
-                    <img class="img_city-thumb" src="{{city.img}}" alt="{{city.name}} Pic">
+                    <img class="img_city-thumb" src="{% static city.img %}" alt="{{city.name}} Pic">
                     {{city.name}}
                 </button>
             </a>
@@ -28,7 +28,7 @@
     <section class="section__post-titles">
         <div class="post-card-header">
             <h1>{{city.name}}</h1>
-            <img id="img_city-pic" src="{{city.img}}" alt="{{city.name}} Pic">
+            <img id="img_city-pic" src="{% static city.img %}" alt="{{city.name}} Pic">
         </div>
         <div id="div_add-post">
             <h3>Posts</h3>

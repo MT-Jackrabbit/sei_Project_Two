@@ -13,10 +13,10 @@ $(document).ready(() => {
 
 });
 
-$('#content').blur(() => {
-    const text = $('#content').val();
-    alert(text.length);
-})
+// $('#content').blur(() => {
+//     const text = $('#content').val();
+//     alert(text.length);
+// })
 
 $('#id_name').blur(() => {
     const name = $('#id_name').val();

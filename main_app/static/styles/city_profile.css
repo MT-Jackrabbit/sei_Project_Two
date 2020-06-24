@@ -8,7 +8,7 @@
     align-items: center;
     width: 25%;
     min-width: 250px;
-    height: 150vh;
+    min-height: 150vh;
     background-color: lightgray;
 }
 
@@ -73,7 +73,7 @@
 
 .section__post-titles {
     width:60%;
-    height: 100vh;
+    min-height: 100vh;
     padding-left: 20px;
 }
 

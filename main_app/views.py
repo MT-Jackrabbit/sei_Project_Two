@@ -30,7 +30,6 @@ def on_login(req):
 @login_required(login_url='home')
 def user_profile(req, profile_id):
     profile = UserProfile.objects.get(id=profile_id)
-    print(f"Profile return = {profile}")
     
     if(req.GET.get("sort") == 'asc'):
         posts = Post.objects.filter(author=profile_id).order_by( '-city__name')
