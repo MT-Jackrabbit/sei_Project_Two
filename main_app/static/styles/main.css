@@ -44,7 +44,7 @@ a:hover {
 
 .signup-help, .modal-content li{
     font-size: small;
-    padding-left: 8px;
+    width: 250px;
 }
 
 #login-modal-content {
