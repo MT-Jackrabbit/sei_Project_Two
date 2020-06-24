@@ -1,4 +1,5 @@
 from django.db import models
+from django.utils.timesince import timesince
 
 from django.contrib.auth.models import User
 
@@ -22,8 +23,8 @@ class UserProfile(models.Model):
         return self.name
 
 class Post(models.Model):
-    title = models.CharField(max_length=250)
-    content = models.TextField(max_length=1000)
+    title = models.CharField(max_length=200)
+    content = models.TextField(max_length=3000)
     author = models.ForeignKey(UserProfile, on_delete=models.CASCADE)
     city = models.ForeignKey(City, on_delete=models.CASCADE)
     created_on = models.DateTimeField(auto_now_add=True)
@@ -31,3 +32,6 @@ class Post(models.Model):
 
     def __str__(self):
         return self.title
+
+    def Time_Since(self):
+        return f"Published: {timesince(self.created_on)} ago"

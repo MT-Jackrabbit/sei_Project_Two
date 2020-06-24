@@ -22,7 +22,7 @@
 
     <nav class="navbar navbar-light bg-light">
         <div class="col-6">
-            <a class="h1" href="/">Wayfarer</a>
+            <a class="h1" href="{% url 'cities' 1 %}">Wayfarer</a>
         </div>
         <div class="col-6 d-flex justify-content-end" id="navbarNav">
             {% if user.is_authenticated %}

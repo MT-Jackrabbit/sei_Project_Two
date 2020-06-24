@@ -8,7 +8,7 @@
     align-items: center;
     width: 25%;
     min-width: 250px;
-    height: 100vh;
+    height: 150vh;
     background-color: lightgray;
 }
 
@@ -20,6 +20,7 @@
     font-size: 20px;
     text-align: left;
     margin: 0 4px 16px 4px;
+    background-color: #F0F1F2;
 }
 
 .img_city-thumb {
@@ -28,6 +29,27 @@
     border: 1px solid white;
     box-shadow: 1px 1px 2px 2px grey;
     margin-right: 5px;
+}
+
+.card-header {
+    display: flex;
+    justify-content: space-between;
+}
+
+.card-header p {
+    font-size: 12px;
+    margin: 0;
+    padding: 0;
+    align-self: flex-end;
+    justify-self: flex-end;
+}
+
+#add-icon {
+    color: lightgrey;
+}
+
+#add-icon:hover {
+    color: red;
 }
 
 #div_add-post {
@@ -56,6 +78,11 @@
     padding-left: 20px;
 }
 
+.card__city-author {
+    display: flex;
+    justify-content: space-between;
+}
+
 .div__update-btns {
     display: flex;
     justify-content: flex-end;
@@ -79,6 +106,11 @@
     display: flex;
     justify-content: space-between;
     margin: 10px 0;
+}
+
+.sort-controls {
+    display: flex;
+    align-items: flex-end;
 }
 
 

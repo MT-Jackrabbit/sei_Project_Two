@@ -21,7 +21,7 @@ td {
     align-items: center;
     width: 25%;
     min-width: 250px;
-    height: 100vh;
+    height: 150vh;
     background-color: lightgray;
 }
 
@@ -53,6 +53,19 @@ td {
 .post-card-header {
     display: flex;
     justify-content: space-between;
+}
+
+.card-header {
+    display: flex;
+    justify-content: space-between;
+}
+
+.card-header p {
+    font-size: 12px;
+    margin: 0;
+    padding: 0;
+    align-self: flex-end;
+    justify-self: flex-end;
 }
 
 .sort-controls {

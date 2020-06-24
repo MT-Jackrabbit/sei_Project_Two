@@ -7,9 +7,7 @@
     <script src="{% static 'scripts/profile.js' %}" defer></script>
 {% endblock %}
 {% block content %}
-
     <!-- Sidebar with profile information -->
-
     <article class="article__user">
         <section class="section__profile">
             {% if user.userprofile.imageURL %}
@@ -21,49 +19,46 @@
             <p id="user-name" class="p__user-profile">{{ profile.name }}</p>
             <p id="user-city" class="p__user-profile">{{ profile.city }}</p>
             <p id="member-since" class="p__user-profile">Member since: {{ profile.joined_on }}</p>
-            <button id="btn__show-update" type="button" class="btn btn-outline-dark btn-sm mt-3">Change</button>
-            <div id="update-form" class="update-form mt-5">
-                <form action="{% url 'edit' profile.id %}" enctype ="multipart/form-data" method="post" class='form__table'>
-                    {% csrf_token %}
-                    <div class="row form-row">
-                        <div class="col">
-                            {{form.name}}
+            <!-- if the user is authenticated and the user signed in is viewing their own profile -->
+            {% if user.is_authenticated and user.id == profile.user_id %}
+                <button id="btn__show-update" type="button" class="btn btn-outline-dark btn-sm mt-3">Change</button>
+                <div id="update-form" class="update-form mt-5">
+                    <form action="{% url 'edit' profile.id %}" enctype ="multipart/form-data" method="post" class='form__table'>
+                        {% csrf_token %}
+                        <div class="row form-row">
+                            <div class="col">
+                                {{form.name}}
+                            </div>
                         </div>
-                    </div>
-                    <div class="row form-row">
-                        <div class="col">
-                            {{form.city}}
+                        <div class="row form-row">
+                            <div class="col">
+                                {{form.city}}
+                            </div>
                         </div>
-                    </div>
-                    <div class="row form-row">
-                        <div class="col">
-                            {{form.imageURL}}
+                        <div class="row form-row">
+                            <div class="col">
+                                {{form.imageURL}}
+                            </div>
                         </div>
-                    </div>
-                    <div class="div__update-btns">
-                        <button id="btn__cancel-update" type="button" class="btn btn-outline-dark btn-sm mt-3 mx-1">Cancel</button>
-                        <button id="btn__user-update" type="submit" class="btn btn-outline-dark btn-sm mt-3 mx-1">Update</button>
-                    </div>
-                </form>
-            </div>
+                        <div class="div__update-btns">
+                            <button id="btn__cancel-update" type="button" class="btn btn-outline-dark btn-sm mt-3 mx-1">Cancel</button>
+                            <button id="btn__user-update" type="submit" class="btn btn-outline-dark btn-sm mt-3 mx-1">Update</button>
+                        </div>
+                    </form>
+                </div>
+            {% endif %}
         </section>
         <section class="section__post-titles">
             <div class="post-card-header">
                 <h1>Posts</h1>
                 <div class="sort-controls">
-
-                    <!-- <a href="/user/{{user.id}}?sort=desc"> -->
-                        <!-- Sorts Posts in decending order -->
-
+                    <!-- Sorts Posts in decending order -->
                     <a href="{% url 'profile' profile.id %}?sort=desc">
                         <svg id="sort-desc" class="bi bi-caret-down" width="25px" height="25px" viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
                             <path fill-rule="evenodd" d="M3.204 5L8 10.481 12.796 5H3.204zm-.753.659l4.796 5.48a1 1 0 0 0 1.506 0l4.796-5.48c.566-.647.106-1.659-.753-1.659H3.204a1 1 0 0 0-.753 1.659z"/>
                         </svg>
                     </a>
-
-                    <!-- <a href="/user/{{user.id}}?sort=asc"> -->
-                        <!-- Sorts posts in ascending order -->
-
+                    <!-- Sorts posts in ascending order -->
                     <a href="{% url 'profile' profile.id %}?sort=asc">
                         <svg id="sort-asc" class="bi bi-caret-up" width="25px" height="25px" viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
                             <path fill-rule="evenodd" d="M3.204 11L8 5.519 12.796 11H3.204zm-.753-.659l4.796-5.48a1 1 0 0 1 1.506 0l4.796 5.48c.566.647.106 1.659-.753 1.659H3.204a1 1 0 0 1-.753-1.659z"/>
@@ -72,17 +67,17 @@
                 </div>
             </div>
             {% for post in posts %}
-
-                <!-- <a href="/user/{{ post.id }}/show_post"> -->
-                    <!-- Post card with link to show page -->
-
+                <!-- Post card with link to show page -->
                 <a href="{% url 'show_post' post.id %}">
                     <div class="card bg-light mb-3 post-card">
                         <div class="card-header">
                            <h5 class="card-title">{{ post.title }}</h5>
+                           <p>{{post.Time_Since}}</p>
                         </div>
                         <div class="card-body">
-                        <h6 class="card-title">{{ post.city }}</h6>
+                        <a href="{% url 'cities' post.city_id %}">
+                            <h6 class="card-title"><u>{{ post.city }}</u></h6>
+                        </a>
                         <p class="card-text my-p-class">{{ post.content }}</p>
                         </div>
                     </div>
