@@ -7,6 +7,10 @@ label {
     margin: 0;
 }
 
+td {
+    max-width: 100%;
+}
+
 .article__user {
     display: flex;
 }
@@ -29,8 +33,8 @@ label {
 
 .profile-img {
     border-radius: 50%;
-    width: 100px;
-    height: 100px;
+    width: 150px;
+    height: 150px;
 }
 
 .div__update-btns {
@@ -67,6 +71,13 @@ label {
 .sort-controls {
     display: flex;
     align-items: flex-end;
+}
+
+.form-row {
+    max-width: 250px;
+    display: flex;
+    justify-content: center;
+    margin: 5px auto;
 }
 
 #user-name {
