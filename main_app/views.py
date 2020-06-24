@@ -45,7 +45,7 @@ def user_profile(req, user_id):
 def user_edit(req, user_id):
     user = UserProfile.objects.get(id=user_id)
     if req.method == "POST":
-        form = Profile_Form(req.POST, instance=user)
+        form = Profile_Form(req.POST, req.FILES,  instance=user)
         if form.is_valid():
             print(form)
             form.save()
