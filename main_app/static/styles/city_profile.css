@@ -131,3 +131,84 @@
     resize: none;
 }
 
+@media only screen and (max-width: 450px) {
+    .section__cities {
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        width: 20%;
+        min-width: 150px;
+        min-height: 150vh;
+        background-color: lightgray;
+    }
+
+    .section__post-titles {
+        width:50%;
+        min-height: 100vh;
+        padding-left: 15px;
+    }
+
+    .city-btn {
+        width: 125px;
+        height: 40px;
+        border-radius: 15px;
+        font-weight: 3000;
+        font-size: 16px;
+        text-align: left;
+        margin: 0 4px 8px 4px;
+        background-color: #F0F1F2;
+    }
+
+    .card-header {
+        flex-direction: column;
+    }
+
+    .card-title {
+        font-size: 18px;
+    }
+
+    .card-header p {
+        font-size: 8px;
+    }
+
+    .card__city-author {
+        flex-direction: column;
+    }
+
+    .card-title {
+        font-size: 14px;
+        font-weight: bold;
+    }
+
+    .card__city-author h6 {
+        font-size: 10px;
+    }
+
+    #div__h4-cities {
+        min-width: 150px;
+    }
+
+    .img_city-thumb {
+        display: none;
+    }
+
+    #img_city-pic {
+        display: none;
+        /* height: 125px;
+        width: 250px; */
+    }
+
+    #h1_city-name {
+        font-size: 26px;
+    }
+
+    #h3__posts-txt {
+        font-size: 18px;
+    }
+
+    #add-icon {
+        height: 25px;
+        width: 25px;
+    }
+}
+

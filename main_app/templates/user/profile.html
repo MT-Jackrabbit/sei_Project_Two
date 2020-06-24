@@ -16,12 +16,14 @@
             <img class="profile-img mt-3" src="{% static 'images/default_img.jpg' %}" alt="profile pic">
         
             {% endif %}
+            <div class="profile__on-media">
             <p id="user-name" class="p__user-profile">{{ profile.name }}</p>
             <p id="user-city" class="p__user-profile">{{ profile.city }}</p>
             <p id="member-since" class="p__user-profile">Member since: {{ profile.joined_on }}</p>
             <!-- if the user is authenticated and the user signed in is viewing their own profile -->
             {% if user.is_authenticated and user.id == profile.user_id %}
                 <button id="btn__show-update" type="button" class="btn btn-outline-dark btn-sm mt-3">Change</button>
+    
                 <div id="update-form" class="update-form mt-5">
                     <form action="{% url 'edit' profile.id %}" enctype ="multipart/form-data" method="post" class='form__table'>
                         {% csrf_token %}
@@ -47,6 +49,7 @@
                     </form>
                 </div>
             {% endif %}
+            </div>
         </section>
         <section class="section__post-titles">
             <div class="post-card-header">
