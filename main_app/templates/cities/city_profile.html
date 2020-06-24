@@ -1,0 +1,215 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block sylesheets %}
+    <link rel="stylesheet" href="{% static 'styles/city_profile.css' %}">
+{% endblock %}
+{% block scripts %}
+    <!-- <script src="{% static 'scripts/profile.js' %}" defer></script> -->
+{% endblock %}
+{% block content %}
+
+<!-- Side Bar with list of city options -->
+
+<article class="article__cities">
+    <section class="section__cities">
+        <div id="div__h4-cities">
+            <h4 id="h4__cities">Cities</h4>
+        </div>
+        {% for city in cities %}
+            <a href="{% url 'cities' city.id %}">
+
+                <button type="button" class="btn btn-outline-dark btn-sm mx-1 city-btn">
+                    <img class="img_city-thumb" src="{% static city.img %}" alt="{{city.name}} Pic">
+                    {{city.name}}
+                </button>
+            </a>
+        {% endfor %}
+    </section>
+    <section class="section__post-titles">
+        <div class="post-card-header">
+            <h1 id="h1_city-name">{{city.name}}</h1>
+            <img id="img_city-pic" src="{% static city.img %}" alt="{{city.name}} Pic">
+        </div>
+        <div id="div_add-post">
+            <h3 id="h3__posts-txt">Posts</h3>
+            <div class="sort-controls">
+                <!-- Sorts Posts in decending order -->
+                <a href="{% url 'cities' city.id %}?sort=desc">
+                    <svg id="sort-desc" class="bi bi-caret-down" width="25px" height="25px" viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                        <path fill-rule="evenodd" d="M3.204 5L8 10.481 12.796 5H3.204zm-.753.659l4.796 5.48a1 1 0 0 0 1.506 0l4.796-5.48c.566-.647.106-1.659-.753-1.659H3.204a1 1 0 0 0-.753 1.659z"/>
+                    </svg>
+                </a>
+                <!-- Sorts posts in ascending order -->
+                <a href="{% url 'cities' city.id %}?sort=asc">
+                    <svg id="sort-asc" class="bi bi-caret-up" width="25px" height="25px" viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                        <path fill-rule="evenodd" d="M3.204 11L8 5.519 12.796 11H3.204zm-.753-.659l4.796-5.48a1 1 0 0 1 1.506 0l4.796 5.48c.566.647.106 1.659-.753 1.659H3.204a1 1 0 0 1-.753-1.659z"/>
+                    </svg>
+                </a>
+            </div>
+            {% if user.is_authenticated %}
+                <!-- Toggles add post modal open -->
+                <a href="#" data-toggle="modal" data-target="#createCityModal">
+                    <svg id="add-icon" class="bi bi-plus-circle-fill" width="35px" height="35px" viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                        <path fill-rule="evenodd" d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zM8.5 4a.5.5 0 0 0-1 0v3.5H4a.5.5 0 0 0 0 1h3.5V12a.5.5 0 0 0 1 0V8.5H12a.5.5 0 0 0 0-1H8.5V4z"/>
+                    </svg>
+                </a>
+            {% endif %}
+        </div>
+
+        <!-- Lists all posts with personalized update Modal -->
+        {% for post in posts %}
+            <div class="card bg-light mb-3 post-card">
+                <a href="{% url 'show_post' post.id %}">
+                    <div class="card-header">
+                        <h5 class="card-title">{{ post.title }}</h5>
+                        <p>{{post.Time_Since}}</p>
+                     </div>
+                </a>
+                <div class="card-body">
+                    <div class="card__city-author">
+                        <h6 class="card-title">{{ post.city }}</h6>
+                        <a href="{% url 'profile' post.author_id %}">
+                            <h6>Author: <u>{{post.author}}</u></h6>
+                        </a>
+                    </div>
+                    <p class="card-text my-p-class">{{ post.content }}</p>
+                </div>
+                {% if user.is_authenticated and post.author_id == profile.id %}
+                    <div class="div__update-btns">
+                        <a href="#" data-toggle="modal" data-target="#delete{{ post.id }}Modal">
+                            <button id="btn__post-delete" type="button" class="btn btn-outline-dark btn-sm mt-3 mx-1">Delete</button>
+                        </a>
+                        <a href="#" data-toggle="modal" data-target="#update{{ post.id }}Modal">
+                            <button id="btn__post-update" class="btn btn-outline-dark btn-sm mt-3 mx-1">Update</button>
+                        </a>
+                    </div>
+                {% endif %}
+            </div>
+
+            <!-- Update Modal -->
+            <div class="container" id="updateCity">
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="modal fade" id="update{{ post.id }}Modal">
+                            <div class="modal-dialog show modal-dialog-centered">
+                                <div class="modal-content">
+                                    <div class="row d-flex justify-content-center">
+                                        <div class="col-sm-9">
+                                            <div class="modal-header">
+                                                <h1>Update post</h1>
+                                            </div>
+                                            <form action="{% url 'edit_post' post.id %}" method="POST">
+                                            <div class="modal-body">
+                                                {% csrf_token %}
+                                                <h6>Title:</h6>
+                                                <div class="row">
+                                                    <div class="col">
+                                                        <input class="mb-3" type="text" name="title" id="title" value='{{ post.title }}'>
+                                                    </div>
+                                                </div>
+                                                <div class="row">
+                                                    <div class="col">
+                                                        <textarea name="content" id="content" cols="40" rows="10" maxlength="3000">{{ post.content }}</textarea>
+                                                    </div>
+                                                </div>
+                                                    <input type="hidden" name="author" id = "author" value="{{ post.author }}">
+                                                    <input type="hidden" name="city" value="{{ city.id }}">
+                                                    <input type="hidden" name="user" value="{{ user.id }}">
+                                                </div>
+                                                <div class="modal-footer">
+                                                    <a href="#" data-toggle= "modal" data-target="#update{{ post.id }}Modal">
+                                                        <button id="btn__cancel-update" class="btn btn-outline-dark btn-sm mt-3 mx-1">Cancel</button>
+                                                    </a>
+                                                    <button id="btn__confirm-update" class="btn btn-outline-dark btn-sm mt-3 mx-1" type="submit">Update</button>
+                                                </div>
+                                            </form>
+                                        </div>
+                                    </div>
+                                </div>
+                             </div>
+                         </div>
+                    </div>
+                </div>
+            </div>
+    <!-- Delete Modal -->
+            <div class="container" id="delete">
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="modal fade" id="delete{{ post.id }}Modal">
+                            <div class="modal-dialog modal-dialog-confirm modal-dialog-centered">
+                                <div class="modal-content">
+                                    <div class="modal-body">
+                                        <h4>Are you sure you want to delete "{{ post.title }}"?</h4>
+                                        <form action=" {% url 'del_post' post.id %}" method="POST">
+                                            {% csrf_token %}
+                                        <input id="del_city" type="hidden" name="del_city" value="{{ city.id }}">
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button type="button" class="btn btn-light" data-dismiss="modal">Cancel</button>
+                                        <button class='btn btn-danger'>Delete</button>
+                                    </div>
+                                        </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        {% endfor %}
+    </section>
+</article>
+
+
+ <!-- Create New Post Modal -->
+ 
+ <div class="container" id="createCity">
+    <div class="row">
+        <div class="col-md-12">
+             <div class="modal fade" id="createCityModal">
+                 <div class="modal-dialog show modal-dialog-centered">
+                     <div class="modal-content d-flex align-items-center">
+                         <div class="modal-header">
+                             <h1>Create a new post</h1>
+                         </div>
+                         <form action="{% url 'add_post' %}" method="POST">
+                            <div class="modal-body">
+                                {% csrf_token %}
+                                <div class="row m-1">
+                                    <div class="col">
+                                        {{ postForm.city }}
+                                    </div>
+                                </div>
+                                <div class="row mx-1">
+                                    <div class="col">
+                                        <h6 class="mb-0 mt-2">Title:</h6>
+                                    </div>
+                                </div>
+                                <div class="row mx-1">
+                                    <div class="col">
+                                        {{ postForm.title }}
+                                    </div>
+                                </div>
+                                <div class="row m-1">
+                                    <div class="col">
+                                        {{ postForm.content }}
+                                    </div>
+                                </div>
+                                 <input type="hidden" id="userId" name="userId" value="{{ user.id }}">
+                                 <input type="hidden" id="cityId" name="cityId" value="{{ city.id }}">
+                                 <input type="hidden" id="authorId" name="authorId" value="{{ city.id }}">
+                            </div>
+                            <div class="modal-footer">
+                                <a href="#" data-toggle= "modal" data-target="#createCityModal">
+                                    <button id="btn__cancel-post" class="btn btn-outline-dark btn-sm mt-3 mx-1">Cancel</button>
+                                </a>
+                                <button id="btn__confirm-post" class="btn btn-outline-dark btn-sm mt-3 mx-1" type="submit">Add Post</button>
+                            </div>
+                        </form>
+                     </div>
+                 </div>
+             </div>
+        </div>
+    </div>
+</div>
+
+{% endblock %}

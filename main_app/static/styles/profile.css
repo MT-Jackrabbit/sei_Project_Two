@@ -1,0 +1,159 @@
+.p__user-profile {
+    margin: 0;
+    padding: 0;
+}
+
+label {
+    margin: 0;
+}
+
+td {
+    max-width: 100%;
+}
+
+.article__user {
+    display: flex;
+}
+
+.section__profile {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 25%;
+    min-width: 250px;
+    min-height: 150vh;
+    background-color: lightgray;
+}
+
+.section__post-titles {
+    width:60%;
+    min-height: 100vh;
+    padding-left: 20px;
+}
+
+.profile-img {
+    border-radius: 50%;
+    width: 150px;
+    height: 150px;
+}
+
+.div__update-btns {
+    display: flex;
+    justify-content: center;
+}
+
+.p__card {
+    color: rgba(0,0,0,.6);
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    max-width: 25ch;
+}
+
+.post-card-header {
+    display: flex;
+    justify-content: space-between;
+}
+
+.card-header {
+    display: flex;
+    justify-content: space-between;
+}
+
+.card-header p {
+    font-size: 12px;
+    margin: 0;
+    padding: 0;
+    align-self: flex-end;
+    justify-self: flex-end;
+}
+
+.sort-controls {
+    display: flex;
+    align-items: flex-end;
+}
+
+.form-row {
+    max-width: 250px;
+    display: flex;
+    justify-content: center;
+    margin: 5px auto;
+}
+
+#user-name {
+    font-size: x-large;
+    font-weight: bold;
+}
+
+#user-city {
+    font-weight: bold;
+}
+
+#member-since {
+    font-size: xx-small;
+    margin-top: 5px;
+}
+
+#id_name, #id_city {
+    width: 175px;
+    height: 24px;
+    padding-left: 3px;
+    margin-left: 2px;
+    border-radius: 5px;
+    border: none;
+    background-color: white;
+    outline-color: #7C8A99;
+}
+
+#sort-desc:hover, #sort-asc:hover {
+    cursor: pointer;
+}
+
+@media only screen and (max-width: 450px) {
+    .article__user {
+        display: flex;
+        flex-direction: column;
+    }
+
+    .section__profile {
+        display: flex;
+        flex-direction: row;
+        align-items: flex-start;
+        width: 100vw;
+        max-height: 150px;
+        min-height: 150px;
+        height: 150px;
+        background-color: lightgray;
+    }
+
+    .section__post-titles {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        width:100%;
+        min-height: 100vh;
+        padding: 0 10px;
+    }
+
+    .profile-img {
+        border-radius: 50%;
+        width: 75px;
+        height: 75px;
+        margin: 0 20px;
+    }
+
+    .profile__on-media {
+        display: flex;
+        flex-direction: column;
+    }
+
+    #update-form {
+        z-index: 2;
+        background-color: lightgrey;
+        padding-bottom: 10px;
+    }
+
+    .card {
+        width: 90%;
+    }
+}

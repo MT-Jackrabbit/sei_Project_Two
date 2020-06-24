@@ -1,7 +1,54 @@
 {% extends 'base.html' %}
 
+{% block scripts %}  {% endblock %}
 {% block content %}
 
-<h1>Welcome Home</h1>
+<!-- Image Carousel -->
+
+<section class="t">
+    <div id="carouselExampleControls" class="carousel slide" data-ride="carousel">
+        <div class="carousel-inner">
+            <div id="img-one" class="carousel-item active">
+            </div>
+            <div id="img-two" class="carousel-item">
+            </div>
+            <div id="img-three" class="carousel-item">
+            </div>
+        </div>
+        <a class="carousel-control-prev" href="#carouselExampleControls" role="button" data-slide="prev">
+            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+            <span class="sr-only">Previous</span>
+        </a>
+        <a class="carousel-control-next" href="#carouselExampleControls" role="button" data-slide="next">
+            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+            <span class="sr-only">Next</span>
+        </a>
+        </div>
+    </div>
+</section>
+
+<!-- About the Company -->
+
+<div class="row">
+    <div class="col-12 d-flex justify-content-center my-2">
+        <h1>Wayfarer is...</h1>
+    </div>
+</div>
+<div class="container">
+    <div class="row">
+        <div class="col-sm m-4">
+            <h2>Topic</h2>
+            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Eum provident facilis debitis perspiciatis sequi consequatur rerum sapiente. Quisquam doloribus fugit recusandae ducimus quis, aperiam excepturi pariatur aliquam impedit facere? Maxime.</p>
+        </div>
+        <div class="col-sm m-4">
+            <h2>Topic</h2>
+            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Eum provident facilis debitis perspiciatis sequi consequatur rerum sapiente. Quisquam doloribus fugit recusandae ducimus quis, aperiam excepturi pariatur aliquam impedit facere? Maxime.</p>
+        </div>
+        <div class="col-sm m-4">
+            <h2>Topic</h2>
+            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Eum provident facilis debitis perspiciatis sequi consequatur rerum sapiente. Quisquam doloribus fugit recusandae ducimus quis, aperiam excepturi pariatur aliquam impedit facere? Maxime.</p>
+        </div>
+    </div>
+</div>
 
 {% endblock %}

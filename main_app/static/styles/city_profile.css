@@ -1,0 +1,214 @@
+.article__cities {
+    display: flex;
+}
+
+.section__cities {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 25%;
+    min-width: 250px;
+    min-height: 150vh;
+    background-color: lightgray;
+}
+
+.city-btn {
+    width: 230px;
+    height: 75px;
+    border-radius: 15px;
+    font-weight: 450;
+    font-size: 20px;
+    text-align: left;
+    margin: 0 4px 16px 4px;
+    background-color: #F0F1F2;
+}
+
+.img_city-thumb {
+    height: 35px;
+    width: 35px;
+    border: 1px solid white;
+    box-shadow: 1px 1px 2px 2px grey;
+    margin-right: 5px;
+}
+
+.card-header {
+    display: flex;
+    justify-content: space-between;
+}
+
+.card-header p {
+    font-size: 12px;
+    margin: 0;
+    padding: 0;
+    align-self: flex-end;
+    justify-self: flex-end;
+}
+
+#add-icon {
+    color: lightgrey;
+}
+
+#add-icon:hover {
+    color: red;
+}
+
+#div_add-post {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 10px;
+}
+
+#div__h4-cities {
+    display: flex;
+    min-width: 230px;
+}
+#h4__cities {
+    margin: 20px 0 10px 15px;
+}
+
+#img_city-pic {
+    height: 125px;
+    width: 250px;
+}
+
+.section__post-titles {
+    width:60%;
+    min-height: 100vh;
+    padding-left: 20px;
+}
+
+.card__city-author {
+    display: flex;
+    justify-content: space-between;
+}
+
+.div__update-btns {
+    display: flex;
+    justify-content: flex-end;
+    margin: 0 5px 8px 0;
+}
+
+.card-body {
+    padding-bottom: 0;
+}
+
+/* sets properties so only 25 characters are shown on post, hides the rest */
+.my-p-class {
+    color: rgba(0,0,0,.6);
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    max-width: 25ch;
+}
+
+.post-card-header {
+    display: flex;
+    justify-content: space-between;
+    margin: 10px 0;
+}
+
+.modal-footer>* {
+    margin: 0;
+}
+
+.sort-controls {
+    display: flex;
+    align-items: flex-end;
+}
+
+
+#title, #id_title, #content, #id_content {
+    width: 300px;
+}
+
+#content, #id_content {
+    padding-left: 3px;
+    margin-left: 2px;
+    border-radius: 5px;
+    outline-color: #7C8A99;
+    border: none;
+    background-color: lightgray;
+    resize: none;
+}
+
+@media only screen and (max-width: 450px) {
+    .section__cities {
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        width: 20%;
+        min-width: 150px;
+        min-height: 150vh;
+        background-color: lightgray;
+    }
+
+    .section__post-titles {
+        width:50%;
+        min-height: 100vh;
+        padding-left: 15px;
+    }
+
+    .city-btn {
+        width: 125px;
+        height: 40px;
+        border-radius: 15px;
+        font-weight: 3000;
+        font-size: 16px;
+        text-align: left;
+        margin: 0 4px 8px 4px;
+        background-color: #F0F1F2;
+    }
+
+    .card-header {
+        flex-direction: column;
+    }
+
+    .card-title {
+        font-size: 18px;
+    }
+
+    .card-header p {
+        font-size: 8px;
+    }
+
+    .card__city-author {
+        flex-direction: column;
+    }
+
+    .card-title {
+        font-size: 14px;
+        font-weight: bold;
+    }
+
+    .card__city-author h6 {
+        font-size: 10px;
+    }
+
+    #div__h4-cities {
+        min-width: 150px;
+    }
+
+    .img_city-thumb {
+        display: none;
+    }
+
+    #img_city-pic {
+        display: none;
+        /* height: 125px;
+        width: 250px; */
+    }
+
+    #h1_city-name {
+        font-size: 26px;
+    }
+
+    #h3__posts-txt {
+        font-size: 18px;
+    }
+
+    #add-icon {
+        height: 25px;
+        width: 25px;
+    }
+}
+
