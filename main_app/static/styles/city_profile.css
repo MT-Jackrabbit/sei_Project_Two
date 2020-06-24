@@ -107,6 +107,10 @@
     margin: 10px 0;
 }
 
+.modal-footer>* {
+    margin: 0;
+}
+
 .sort-controls {
     display: flex;
     align-items: flex-end;

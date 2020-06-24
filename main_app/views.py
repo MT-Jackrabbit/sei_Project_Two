@@ -49,7 +49,6 @@ def user_edit(req, profile_id):
     if req.method == "POST":
         form = Profile_Form(req.POST, req.FILES,  instance=profile)
         if form.is_valid():
-            print(form)
             form.save()
             return redirect('profile', profile_id=profile_id)
     else:
@@ -86,7 +85,6 @@ def del_post(req, post_id):
 # --- edit_post route --- #
 @login_required(login_url='home')
 def edit_post(req, post_id):
-    print(req.POST)
     if req.method == 'POST':
         city = City.objects.get(id = req.POST['city'])
         user = User.objects.get(id = req.POST['user'])
@@ -136,7 +134,6 @@ def sign_up(req):
             return redirect('profile', profile.id)
         else:
             context = {'logInForm': AuthenticationForm(), 'signUpForm': user_form, 'profileForm': profile_form, 'errors': user_form.errors}
-            print(context)
             return render(req, 'home.html', context )
 
 
