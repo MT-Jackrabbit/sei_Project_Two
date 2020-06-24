@@ -116,7 +116,7 @@ th {
     justify-content: start;
 }
 
-@media screen {
+@media only screen and (max-width: 450px) {
     #login-modal-content {
         max-width: 275px;
         min-width: 275px;
