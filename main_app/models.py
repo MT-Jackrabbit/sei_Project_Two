@@ -13,7 +13,7 @@ class City(models.Model):
 
 class UserProfile(models.Model):
     name = models.CharField(max_length=100)
-    imageURL = models.ImageField(upload_to= 'profile_image', blank = True, default= 'profile_image/default_img.jpg')
+    imageURL = models.ImageField(upload_to= 'profile_image', blank = True, default= '')
     city = models.ForeignKey(City, on_delete=models.CASCADE)
     # will create the date and set editable=False and blank=True
     joined_on = models.DateField(auto_now_add=True)

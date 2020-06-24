@@ -109,7 +109,7 @@ td {
     cursor: pointer;
 }
 
-@media only screen and (max-width: 450px) {
+@media only screen and (max-width: 650px) {
     .article__user {
         display: flex;
         flex-direction: column;

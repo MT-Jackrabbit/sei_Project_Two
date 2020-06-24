@@ -131,7 +131,7 @@
     resize: none;
 }
 
-@media only screen and (max-width: 450px) {
+@media only screen and (max-width: 650px) {
     .section__cities {
         display: flex;
         flex-direction: column;
