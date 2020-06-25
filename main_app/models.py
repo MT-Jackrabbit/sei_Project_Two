@@ -11,6 +11,7 @@ class City(models.Model):
     def __str__(self):
         return self.name
 
+# user.profile
 class UserProfile(models.Model):
     name = models.CharField(max_length=100)
     imageURL = models.ImageField(upload_to= 'profile_image', blank = True, default= '')
@@ -21,6 +22,15 @@ class UserProfile(models.Model):
 
     def __str__(self):
         return self.name
+
+    # {{ user.profile.get_fullname }}
+    def get_fullname(self):
+        return f"{self.user.firstname} {self.user.lastname}"
+
+    # user.posts_set.all
+    # {{ for post in profile.get_posts }}
+    def get_posts(self):
+        return self.user.posts_set.all()
 
 class Post(models.Model):
     title = models.CharField(max_length=200)

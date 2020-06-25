@@ -11,6 +11,8 @@ td {
     max-width: 100%;
 }
 
+/* Articles */
+
 .article__user {
     display: flex;
 }

@@ -65,8 +65,10 @@ def show_post(req, post_id):
 # --- add_post route --- #
 @login_required(login_url='home')
 def add_post(req):
+    """ adds a post to the db """
     if req.method == 'POST':
-        city = City.objects.get(id = req.POST['cityId'])
+        city = City.objects.get(id=req.POST['cityId'])
+        # request.user
         user = User.objects.get(id = req.POST['userId'])
         profile = UserProfile.objects.get(user = req.user.id)
         post = Post(title = req.POST['title'],content = req.POST['content'], author = profile, city = city, user = user)
