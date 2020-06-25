@@ -11,9 +11,10 @@ class City(models.Model):
     def __str__(self):
         return self.name
 
+# user.profile
 class UserProfile(models.Model):
     name = models.CharField(max_length=100)
-    imageURL = models.ImageField(upload_to= 'profile_image', blank = True, default= 'profile_image/default_img.jpg')
+    imageURL = models.ImageField(upload_to= 'profile_image', blank = True, default= '')
     city = models.ForeignKey(City, on_delete=models.CASCADE)
     # will create the date and set editable=False and blank=True
     joined_on = models.DateField(auto_now_add=True)
@@ -21,6 +22,15 @@ class UserProfile(models.Model):
 
     def __str__(self):
         return self.name
+
+    # {{ user.profile.get_fullname }}
+    def get_fullname(self):
+        return f"{self.user.firstname} {self.user.lastname}"
+
+    # user.posts_set.all
+    # {{ for post in profile.get_posts }}
+    def get_posts(self):
+        return self.user.posts_set.all()
 
 class Post(models.Model):
     title = models.CharField(max_length=200)

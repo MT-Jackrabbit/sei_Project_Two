@@ -57,6 +57,7 @@
         </div>
 
         <!-- Lists all posts with personalized update Modal -->
+        <!-- for post in city.posts_set.all -->
         {% for post in posts %}
             <div class="card bg-light mb-3 post-card">
                 <a href="{% url 'show_post' post.id %}">
