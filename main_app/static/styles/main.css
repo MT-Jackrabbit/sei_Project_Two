@@ -61,10 +61,6 @@ a:hover {
     justify-content: center;
 }
 
-.modal-content li{
-    list-style: none;
-}
-
 #img-one {
     background-color: lightgray;
     background-image: url("https://images.unsplash.com/photo-1581869141724-449a7c9e2b9a?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=2378&q=80");
@@ -114,6 +110,27 @@ th {
     display: flex;
     flex-direction: column;
     justify-content: start;
+    max-width: 125px;
+}
+
+td div, p, li {
+    max-width: 200px;
+}
+
+#span__username:hover {
+    cursor: pointer;
+}
+
+#span__password1:hover {
+    cursor: pointer;
+}
+
+#span__password2:hover {
+    cursor: pointer;
+}
+
+#span__username, #span__password1, #span__password2 {
+    font-size: 12px;
 }
 
 @media only screen and (max-width: 450px) {

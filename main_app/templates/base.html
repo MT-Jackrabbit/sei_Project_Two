@@ -139,14 +139,25 @@
         
                                         {% for field in signUpForm %}
                                             <tr>
-                                                <th>{{field.label_tag}}</th>
+                                                <th>
+                                                    {{field.label_tag}}
+                                                </th>
                                                 <td>
-                                                    {{field}}
                                                     {% if field.help_text %}
-                                                        <p class="signup-help">
-                                                            {{field.help_text}}
-                                                        </p>
+                                                        <u><span id="span__{{field.name}}">Help</span></u>
+                                                        <br>
                                                     {% endif %}
+                                                    {{field}}
+                                                    <div id="div__help-{{field.name}}"  style="display: none;">
+                                                        {% if field.help_text %}
+                                                        
+                                                            <p class="signup-help">
+                                                                {{field.help_text}}
+                                                            </p>
+                                                            
+                                                        {% endif %}
+                                                    </div>
+                                                    
                                                 </td>
                                             </tr>
                                         {% endfor %}

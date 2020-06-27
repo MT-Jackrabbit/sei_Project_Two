@@ -13,10 +13,20 @@ $(document).ready(() => {
 
 });
 
-// $('#content').blur(() => {
-//     const text = $('#content').val();
-//     alert(text.length);
-// })
+$('#span__username').click(() => {
+    //alert($('#div__help-username').text());
+    $('#div__help-username').toggle();
+});
+
+$('#span__password1').click(() => {
+    // alert($('#div__help-password1').text());
+    $('#div__help-password1').toggle();
+});
+
+$('#span__password2').click(() => {
+    // alert($('#div__help-password2').text());
+    $('#div__help-password2').toggle();
+});
 
 $('#id_name').blur(() => {
     const name = $('#id_name').val();
