@@ -1,4 +1,4 @@
-console.log('The app.js loaded correctly');
+console.log('app.js loaded correctly');
 
 $(document).ready(() => {
     const errLogin = $('#login-errors').text();

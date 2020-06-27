@@ -1,3 +1,4 @@
+console.log("show_post.js loaded");
 // Show more/Show less link for show post 
 let POST_TEXT = '';
 let MIN_TEXT = '';

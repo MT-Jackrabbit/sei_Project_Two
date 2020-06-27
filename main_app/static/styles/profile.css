@@ -7,16 +7,9 @@ label {
     margin: 0;
 }
 
-td {
-    max-width: 100%;
-}
-
-/* Articles */
-
-.article__user {
-    display: flex;
-}
-
+/**********************
+    Profile
+**********************/
 .section__profile {
     display: flex;
     flex-direction: column;
@@ -27,21 +20,63 @@ td {
     background-color: lightgray;
 }
 
-.section__post-titles {
-    width:60%;
-    min-height: 100vh;
-    padding-left: 20px;
-}
-
 .profile-img {
     border-radius: 50%;
     width: 150px;
     height: 150px;
 }
 
+.profile__details {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+#user-name {
+    font-size: x-large;
+    font-weight: bold;
+}
+
+#user-city {
+    font-weight: bold;
+}
+
+#member-since {
+    font-size: xx-small;
+    margin-top: 5px;
+}
+
+#btn__show-update {
+    width: 75px;
+}
+
 .div__update-btns {
     display: flex;
     justify-content: center;
+}
+
+/**********************
+    Profile Update
+**********************/
+#div__image-upload {
+    max-width: 180px;
+    min-height: 100px;
+    height: 75px;
+    /* background-color: white; */
+    font-size: 12px;
+    overflow: hidden;
+}
+
+/* Articles */
+
+.article__user {
+    display: flex;
+}
+
+.section__post-titles {
+    width:60%;
+    min-height: 100vh;
+    padding-left: 20px;
 }
 
 .p__card {
@@ -80,20 +115,6 @@ td {
     display: flex;
     justify-content: center;
     margin: 5px auto;
-}
-
-#user-name {
-    font-size: x-large;
-    font-weight: bold;
-}
-
-#user-city {
-    font-weight: bold;
-}
-
-#member-since {
-    font-size: xx-small;
-    margin-top: 5px;
 }
 
 #id_name, #id_city {

@@ -1,10 +1,4 @@
-console.log("Yea it is working, just changed it.");
-$(document).ready(() => {
-    // var height = $('.section__post-titles').height()
-    // $('.sidebar').height(height)​
-    
-    $('#update-form').hide();
-});
+console.log("profile.js loaded");
 
 $('#btn__show-update').click(() => {
     $('#update-form').show();
