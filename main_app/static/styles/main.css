@@ -113,7 +113,7 @@ th {
     max-width: 125px;
 }
 
-td div, p, li {
+td div, td p, td li {
     max-width: 200px;
 }
 
